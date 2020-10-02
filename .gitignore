@@ -61,3 +61,8 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+LD47/Library/
+
+LD47/obj/Debug/
+
+LD47/Temp/

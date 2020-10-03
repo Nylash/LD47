@@ -27,8 +27,11 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Vector2 Coordinates = Vector2.zero;
 
+    private Vector2 InitialCoordinates = Vector2.zero;
+    
     private void Start()
     {
+        SetInitialCoordinates(Coordinates);
         MapReference = FindObjectOfType<Map>();
     }
 
@@ -41,10 +44,10 @@ public class Character : MonoBehaviour
             if (MapReference.CanMoveTo(Coordinates, Command, out newCoordinates))
             {
                 Move(newCoordinates);
+                PreviousCommand.Add(Command);
             }
             
-            PreviousCommand.Add(Command);
-            Command = MovementCommand.None; 
+            Command = MovementCommand.None;
         }
     }
 
@@ -73,19 +76,28 @@ public class Character : MonoBehaviour
             Command = MovementCommand.Right;
     }
 
-    public void CreateNext()
+    public void CreateNextGhost()
     {
         
     }
 
     private void Move(Vector2 newCoordinates)
     {
+        MapReference.CharacterLeaveBlock(Coordinates);
+        
         Coordinates = newCoordinates;
         transform.position = MapReference.MapCoordinatesToWorldSpace(newCoordinates);
+
+        MapReference.CharacterOnBlock(Coordinates);
     }
 
     private MovementCommand GetLastCommand()
     {
         return PreviousCommand.Count == 0 ? MovementCommand.None : PreviousCommand.Last();
+    }
+
+    private void SetInitialCoordinates(Vector2 Coords)
+    {
+        InitialCoordinates = Coords;
     }
 }

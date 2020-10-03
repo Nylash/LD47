@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [ExecuteInEditMode]
-public abstract class InteractableObject : MonoBehaviour
+public class InteractableObject : EnhancedMonoBehaviour
 {
-    public int Index = 0;
+    [Range(0, 2)]
+    public int InteractionLayer = 0;
     [HideInInspector]
     [SerializeField] protected MaterialsIndexer materialsIndexer = null;
     [HideInInspector]
@@ -14,47 +14,50 @@ public abstract class InteractableObject : MonoBehaviour
     [HideInInspector]
     [SerializeField] protected MeshRenderer MeshRef = null;
 
-    public abstract void InteractEnter();
-    public abstract void InteractExit();
-
-    protected virtual void Start()
+    private MapBlock Owner = null;
+    
+    protected override void EditorStart()
     {
-#if UNITY_EDITOR
-        if (!EditorApplication.isPlaying)
+        ObjectRef = GetObjectRef();
+        if (ObjectRef)
         {
-            if (!ObjectRef)
-            {
-                ObjectRef = gameObject;
-                MeshRef = ObjectRef.GetComponent<MeshRenderer>();
-            }
+            MeshRef = ObjectRef.GetComponent<MeshRenderer>();
+            if (MeshRef.sharedMaterial != materialsIndexer.materials[InteractionLayer])
+                MeshRef.sharedMaterial = materialsIndexer.materials[InteractionLayer];                
         }
-#endif  
     }
 
-    protected virtual void Update()
+    public virtual void InteractEnter()
     {
-#if UNITY_EDITOR
-        if (EditorApplication.isPlaying)
-        {
-            GameUpdate();
-        }
-        else
-        {
-            EditorUpdate();
-        }
-#else
-        GameUpdate();
-#endif
+        
     }
 
-    private void GameUpdate()
+    public virtual void InteractExit()
     {
-
+        
     }
 
-    private void EditorUpdate()
+    protected override void EditorUpdate()
     {
-        if (MeshRef.sharedMaterial != materialsIndexer.materials[Index])
-            MeshRef.sharedMaterial = materialsIndexer.materials[Index];
+        if (ObjectRef)
+        {
+            if (MeshRef.sharedMaterial != materialsIndexer.materials[InteractionLayer])
+                MeshRef.sharedMaterial = materialsIndexer.materials[InteractionLayer];                
+        }
+    }
+
+    protected virtual GameObject GetObjectRef()
+    {
+        return gameObject;
+    }
+
+    protected MapBlock GetOwner()
+    {
+        if (!Owner)
+        {
+            Owner = gameObject.GetComponent<MapBlock>();
+        }
+
+        return Owner;
     }
 }

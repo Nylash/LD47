@@ -5,21 +5,33 @@ using UnityEngine;
 public class MasterButton : MonoBehaviour
 {
     private List<Button> AllButtonsUnsorted = new List<Button>();
-    private Button[] AllButtonsSorted;
+    private Dictionary<int, List<Button>> AllButtonsSorted;
     private List<InteractableObject> AllInteractableObjects = new List<InteractableObject>();
 
     private void Start()
     {
         AllButtonsUnsorted.AddRange(FindObjectsOfType<Button>());
         AllInteractableObjects.AddRange(FindObjectsOfType<InteractableObject>());
-        AllButtonsSorted = new Button[AllButtonsUnsorted.Count];
+        AllButtonsSorted = new Dictionary<int, List<Button>>();
         foreach (Button item in AllButtonsUnsorted)
         {
-            AllButtonsSorted[item.Index] = item;
+            if (!AllButtonsSorted.ContainsKey(item.InteractionLayer))
+            {
+                AllButtonsSorted.Add(item.InteractionLayer, new List<Button>());
+            }
+            AllButtonsSorted[item.InteractionLayer].Add(item);
         }
         foreach (InteractableObject item in AllInteractableObjects)
         {
-            AllButtonsSorted[item.Index].relatedObjects.Add(item);
+            if (item.GetType() == typeof(Button))
+            {
+                continue;
+            }
+            
+            foreach (Button button in AllButtonsSorted[item.InteractionLayer])
+            {
+                button.relatedObjects.Add(item);
+            }
         }
     }
 }

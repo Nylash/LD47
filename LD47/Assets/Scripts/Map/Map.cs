@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class Map : MonoBehaviour
+public class Map : EnhancedMonoBehaviour
 {
     [SerializeField] private Vector2 Size = new Vector2(10,10);
     [SerializeField]
@@ -14,25 +13,14 @@ public class Map : MonoBehaviour
     [SerializeField] private List<MapBlock> Blocks = new List<MapBlock>();
 
     [SerializeField] private bool RefreshAssets = false; 
-    
-    // Update is called once per frame
-    void Update()
-    {
-#if UNITY_EDITOR
-        if (EditorApplication.isPlaying)
-        {
-            GameUpdate();
-        }
-        else
-        {
-            EditorUpdate();
-        }
-#else
-        GameUpdate();
-#endif
-    }
 
-    private void EditorUpdate()
+    private List<Vector2> ActiveBlockCoords = new List<Vector2>();
+    private List<Vector2> NewActiveBlockCoords = new List<Vector2>();
+    private List<Vector2> NewInactiveBlockCoords = new List<Vector2>();
+    
+    private List<Character> Ghosts = new List<Character>();
+    
+    protected override void EditorUpdate()
     {
         if (RefreshAssets)
         {
@@ -47,9 +35,37 @@ public class Map : MonoBehaviour
         }
     }
     
-    private void GameUpdate()
+    protected override void GameUpdate()
     {
+        for (int i = 0; i < NewInactiveBlockCoords.Count; ++i)
+        {
+            // If the block wasn't activated again this frame, delete it trigger exit on buttons
+            if (!NewActiveBlockCoords.Contains(NewInactiveBlockCoords[i]))
+            {
+                ActiveBlockCoords.Remove(NewInactiveBlockCoords[i]);
+                Button button = GetBlock(NewInactiveBlockCoords[i]).GetComponent<Button>();
+                if(button)
+                {
+                    button.InteractExit();
+                }
+            }
+        }
+        for (int i = 0; i < NewActiveBlockCoords.Count; ++i)
+        {
+            // If the block wasn't activated before, add it and trigger button enter
+            if (!ActiveBlockCoords.Contains(NewActiveBlockCoords[i]))
+            {
+                ActiveBlockCoords.Add(NewActiveBlockCoords[i]);
+                Button button = GetBlock(NewActiveBlockCoords[i]).GetComponent<Button>();
+                if(button)
+                {
+                    button.InteractEnter();
+                }
+            }
+        }
         
+        NewActiveBlockCoords.Clear();
+        NewInactiveBlockCoords.Clear();
     }
 
     private void CreateBlocks(bool FromExisting = false)
@@ -87,7 +103,8 @@ public class Map : MonoBehaviour
     {
         NewCoordinates = From;
         if (GetBlock(From).BlockMovement(Direction))
-        { 
+        {
+            print("Block by current");
             return false;
         }
         
@@ -111,6 +128,7 @@ public class Map : MonoBehaviour
 
         if (GetBlock(NewCoordinates).BlockMovement(Direction, false))
         {
+            print("Blocked by other");
             return false;
         }
 
@@ -141,5 +159,20 @@ public class Map : MonoBehaviour
         {
             Coordinates.y += Size.y;
         }
+    }
+    
+    public void CharacterOnBlock(Vector2 Coords)
+    {
+        NewActiveBlockCoords.Add(Coords);
+    }
+    
+    public void CharacterLeaveBlock(Vector2 Coords)
+    {
+        NewInactiveBlockCoords.Add(Coords);
+    }
+
+    public void AddGhost(Character NewGhost)
+    {
+        
     }
 }

@@ -49,6 +49,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""CreateGhost"",
+                    ""type"": ""Button"",
+                    ""id"": ""01168adc-7191-449b-b02f-db05f1a48809"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -93,6 +101,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""MoveRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c36e295a-a235-4203-85ed-4ca792427856"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CreateGhost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -181,6 +200,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_MoveDown = m_Player.FindAction("MoveDown", throwIfNotFound: true);
         m_Player_MoveLeft = m_Player.FindAction("MoveLeft", throwIfNotFound: true);
         m_Player_MoveRight = m_Player.FindAction("MoveRight", throwIfNotFound: true);
+        m_Player_CreateGhost = m_Player.FindAction("CreateGhost", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
@@ -238,6 +258,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MoveDown;
     private readonly InputAction m_Player_MoveLeft;
     private readonly InputAction m_Player_MoveRight;
+    private readonly InputAction m_Player_CreateGhost;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -246,6 +267,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MoveDown => m_Wrapper.m_Player_MoveDown;
         public InputAction @MoveLeft => m_Wrapper.m_Player_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_Player_MoveRight;
+        public InputAction @CreateGhost => m_Wrapper.m_Player_CreateGhost;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -267,6 +289,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MoveRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveRight;
                 @MoveRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveRight;
                 @MoveRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMoveRight;
+                @CreateGhost.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCreateGhost;
+                @CreateGhost.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCreateGhost;
+                @CreateGhost.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCreateGhost;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -283,6 +308,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @MoveRight.started += instance.OnMoveRight;
                 @MoveRight.performed += instance.OnMoveRight;
                 @MoveRight.canceled += instance.OnMoveRight;
+                @CreateGhost.started += instance.OnCreateGhost;
+                @CreateGhost.performed += instance.OnCreateGhost;
+                @CreateGhost.canceled += instance.OnCreateGhost;
             }
         }
     }
@@ -343,6 +371,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMoveDown(InputAction.CallbackContext context);
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
+        void OnCreateGhost(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

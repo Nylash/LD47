@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class MapBlock : MonoBehaviour
+public class MapBlock : EnhancedMonoBehaviour
 {
 
     [Header("Block data")] 
@@ -42,46 +41,28 @@ public class MapBlock : MonoBehaviour
         bHasWallLeft = Other.bHasWallLeft;
         bHasWallRight = Other.bHasWallRight;
         bHasWallTop = Other.bHasWallTop;
+
+#if UNITY_EDITOR
+        InteractableObject[] componentsToCopy = Other.gameObject.GetComponents<InteractableObject>();
+        for (int i = 0; i < componentsToCopy.Length; ++i)
+        {
+            UnityEditorInternal.ComponentUtility.CopyComponent(componentsToCopy[i]);
+            UnityEditorInternal.ComponentUtility.PasteComponentAsNew(gameObject);
+        }
+#endif
     }
+
+    protected override void EditorStart()
+    {
+        if (!FloorRef)
+        {
+            FloorRef = Instantiate(FloorModel, transform);
+        }
+    }
+
     
-    private void Start()
-    {
-#if UNITY_EDITOR
-        if (!EditorApplication.isPlaying)
-        {
-            if (!FloorRef)
-            {
-                FloorRef = Instantiate(FloorModel, transform);
-            }
-            
-        }
-#endif
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-#if UNITY_EDITOR
-        if (EditorApplication.isPlaying)
-        {
-            GameUpdate();
-        }
-        else
-        {
-            EditorUpdate();
-        }
-#else
-        GameUpdate();
-#endif
-    }
-
-    private void GameUpdate()
-    {
-        
-    }
-
-    private void EditorUpdate()
+    protected override void EditorUpdate()
     {
        UpdateWalls();
     }
@@ -185,5 +166,63 @@ public class MapBlock : MonoBehaviour
 
         Debug.LogError("Something really weird happen");
         return true;
+    }
+
+    public GameObject GetWall(MovementCommand Direction)
+    {
+        switch (Direction)
+        {
+            case MovementCommand.Up:
+                return WallsRef[0];
+                
+            case MovementCommand.Down:
+                return WallsRef[2];
+                
+            case MovementCommand.Left:
+                return WallsRef[1];
+                
+            case MovementCommand.Right:
+                return WallsRef[3];
+        }
+
+        return null;
+    }
+
+    public void LockDirection(MovementCommand Direction)
+    {
+        switch (Direction)
+        {
+            case MovementCommand.Up:
+                bHasWallTop = true;
+                break;
+            case MovementCommand.Down:
+                bHasWallBottom = true;
+                break;
+            case MovementCommand.Left:
+                bHasWallLeft = true;
+                break;
+            case MovementCommand.Right:
+                bHasWallRight = true;
+                break;
+        }
+    }
+
+    public void UnlockDirection(MovementCommand Direction)
+    {
+        switch (Direction)
+        {
+            case MovementCommand.Up:
+                bHasWallTop = false;
+                break;
+            case MovementCommand.Down:
+                bHasWallBottom = false;
+                break;
+            case MovementCommand.Left:
+                bHasWallLeft = false;
+                break;
+            case MovementCommand.Right:
+                bHasWallRight = false;
+                break;
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [Serializable]
@@ -48,25 +49,25 @@ public class Character : MonoBehaviour
 
     public void AskMoveUp()
     {
-        if(Command == MovementCommand.None)
+        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down)
             Command = MovementCommand.Up;
     }
     
     public void AskMoveDown()
     {
-        if(Command == MovementCommand.None)
+        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up)
             Command = MovementCommand.Down;
     }
     
     public void AskMoveLeft()
     {
-        if(Command == MovementCommand.None)
+        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right)
             Command = MovementCommand.Left;   
     }
     
     public void AskMoveRight()
     {
-        if(Command == MovementCommand.None)
+        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left)
             Command = MovementCommand.Right;
     }
 
@@ -79,5 +80,10 @@ public class Character : MonoBehaviour
     {
         Coordinates = newCoordinates;
         transform.position = MapReference.MapCoordinatesToWorldSpace(newCoordinates);
+    }
+
+    private MovementCommand GetLastCommand()
+    {
+        return PreviousCommand.Count == 0 ? MovementCommand.None : PreviousCommand.Last();
     }
 }

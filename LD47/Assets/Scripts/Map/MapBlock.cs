@@ -17,10 +17,11 @@ public class MapBlock : MonoBehaviour
     [SerializeField] private bool bHasWallLeft = false;
     [SerializeField] private bool bHasWallBottom = false;
     [SerializeField] private bool bHasWallRight = false;
+    [HideInInspector]
     [SerializeField] private GameObject WallModel = null;
+    [HideInInspector]
     [SerializeField] private GameObject FullWallModel = null;
-
-    [Header("Floor")]
+    [HideInInspector]
     [SerializeField] private GameObject FloorModel = null;
     
     [SerializeField]

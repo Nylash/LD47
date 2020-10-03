@@ -6,23 +6,80 @@
             "id": "7e426ada-a607-429b-92df-ddc253be664a",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "MoveUp",
                     "type": "Button",
                     "id": "f777a32f-3e64-4b60-a596-85e857ae917c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
+                },
+                {
+                    "name": "MoveDown",
+                    "type": "Button",
+                    "id": "58a02d2f-b456-41f0-aaa1-ea023b50f8b6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "MoveLeft",
+                    "type": "Button",
+                    "id": "e18afe56-6f40-4d13-a2b6-0a39a867440c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
+                },
+                {
+                    "name": "MoveRight",
+                    "type": "Button",
+                    "id": "9b6ac427-813c-40e6-a2c2-ed694f169d99",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press"
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "6d507b4f-78f3-4e6c-8e2c-47cf756d0794",
-                    "path": "",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "MoveUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d0ef4ec-53dd-4588-b331-f07badaab162",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveDown",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca139b2c-8048-4ca7-af02-acebf44361ca",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "16839971-c5cd-4706-ba1a-651087eedc0f",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MoveRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -86,5 +143,22 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "ControlScheme",
+            "bindingGroup": "ControlScheme",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": false,
+                    "isOR": false
+                },
+                {
+                    "devicePath": "<Mouse>",
+                    "isOptional": false,
+                    "isOR": false
+                }
+            ]
+        }
+    ]
 }

@@ -21,11 +21,26 @@ public class MapBlock : MonoBehaviour
     [Header("Floor")]
     [SerializeField] private GameObject FloorModel = null;
     
+    [SerializeField]
+    [HideInInspector]
     private GameObject[] WallsRef = {null, null, null, null};
+    [SerializeField]
+    [HideInInspector]
+    private GameObject FloorRef = null;
 
     private void Start()
     {
-        Instantiate(FloorModel, transform);
+#if UNITY_EDITOR
+        if (!EditorApplication.isPlaying)
+        {
+            if (!FloorRef)
+            {
+                FloorRef = Instantiate(FloorModel, transform);
+            }
+            
+        }
+#endif
+        
     }
 
     // Update is called once per frame
@@ -82,5 +97,49 @@ public class MapBlock : MonoBehaviour
             DestroyImmediate(WallsRef[WallIndex]);
             WallsRef[WallIndex] = null;
         }
+    }
+
+    public bool BlockMovement(MovementCommand Direction, bool Out = true)
+    {
+        MovementCommand directionToCheck = Direction;
+        if (!Out)
+        {
+            switch (Direction)
+            {
+                case MovementCommand.Up:
+                    directionToCheck = MovementCommand.Down;
+                    break;
+                
+                case MovementCommand.Down:
+                    directionToCheck = MovementCommand.Up;
+                    break;
+                
+                case MovementCommand.Left:
+                    directionToCheck = MovementCommand.Right;
+                    break;
+                
+                case MovementCommand.Right:
+                    directionToCheck = MovementCommand.Left;
+                    break; 
+            }
+        }
+        
+        switch (directionToCheck)
+        {
+            case MovementCommand.Up:
+                return bHasWallTop;
+                
+            case MovementCommand.Down:
+                return bHasWallBottom;
+                
+            case MovementCommand.Left:
+                return bHasWallLeft;
+                
+            case MovementCommand.Right:
+                return bHasWallRight;
+        }
+
+        Debug.LogError("Something really weird happen");
+        return true;
     }
 }

@@ -8,14 +8,10 @@ using UnityEngine;
 public class Map : MonoBehaviour
 {
     [SerializeField] private Vector2 Size = new Vector2(10,10);
-    private Vector2 PreviousSize;
+    [SerializeField]
+    [HideInInspector]
+    private Vector2 PreviousSize = new Vector2(-1,-1);
     [SerializeField] private List<MapBlock> Blocks = new List<MapBlock>();
-
-    private void Awake()
-    {
-        PreviousSize = Size;
-        CreateBlocks();
-    }
 
     // Update is called once per frame
     void Update()
@@ -67,6 +63,66 @@ public class Map : MonoBehaviour
                 blockComponent.SetCoordinates(new Vector2(x,y));
                 Blocks.Add(blockComponent);                
             }    
+        }
+    }
+
+    public bool CanMoveTo(Vector2 From, MovementCommand Direction, out Vector2 NewCoordinates)
+    {
+        NewCoordinates = From;
+        if (GetBlock(From).BlockMovement(Direction))
+        { 
+            return false;
+        }
+        
+        switch (Direction)
+        {
+            case MovementCommand.Up:
+                NewCoordinates.y -= 1;
+                break;
+            case MovementCommand.Down:
+                NewCoordinates.y += 1;
+                break;
+            case MovementCommand.Left:
+                NewCoordinates.x -= 1;
+                break;
+            case MovementCommand.Right:
+                NewCoordinates.x += 1;
+                break;
+        }
+
+        ClampCoordinates(ref NewCoordinates);
+
+        if (GetBlock(NewCoordinates).BlockMovement(Direction, false))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    public Vector3 MapCoordinatesToWorldSpace(Vector2 Coordinates)
+    {
+        return transform.position + new Vector3(Coordinates.x, 0, -Coordinates.y);
+    }
+
+    private MapBlock GetBlock(Vector2 Coordinates)
+    {
+        return Blocks[(int)Coordinates.x * (int)Size.y + (int)Coordinates.y];
+    }
+
+    public void ClampCoordinates(ref Vector2 Coordinates)
+    {
+        Coordinates.x = Coordinates.x % Size.x;
+        Coordinates.y = Coordinates.y % Size.y;
+
+        if (Coordinates.x < 0)
+        {
+            Coordinates.x += Size.x;
+        }
+
+        if (Coordinates.y < 0)
+        {
+            Coordinates.y += Size.y;
         }
     }
 }

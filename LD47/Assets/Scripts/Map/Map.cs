@@ -13,6 +13,8 @@ public class Map : MonoBehaviour
     private Vector2 PreviousSize = new Vector2(-1,-1);
     [SerializeField] private List<MapBlock> Blocks = new List<MapBlock>();
 
+    [SerializeField] private bool RefreshAssets = false; 
+    
     // Update is called once per frame
     void Update()
     {
@@ -32,14 +34,14 @@ public class Map : MonoBehaviour
 
     private void EditorUpdate()
     {
+        if (RefreshAssets)
+        {
+            CreateBlocks(true);
+            RefreshAssets = false;
+        }
+        
         if (Size != PreviousSize)
         {
-            for(int i = Blocks.Count - 1; i >= 0; --i)
-            {
-                DestroyImmediate(Blocks[i].gameObject);                
-            }
-            
-            Blocks.Clear();
             CreateBlocks();
             PreviousSize = Size;
         }
@@ -50,8 +52,9 @@ public class Map : MonoBehaviour
         
     }
 
-    private void CreateBlocks()
+    private void CreateBlocks(bool FromExisting = false)
     {
+        List<MapBlock> newBlocks = new List<MapBlock>();
         for (int x = 0; x < Size.x; ++x)
         {
             for (int y = 0; y < Size.y; ++y)
@@ -61,9 +64,23 @@ public class Map : MonoBehaviour
 
                 MapBlock blockComponent = newBlock.AddComponent<MapBlock>();
                 blockComponent.SetCoordinates(new Vector2(x,y));
-                Blocks.Add(blockComponent);                
+
+                if (FromExisting)
+                {
+                    MapBlock block = GetBlock(new Vector2(x, y));
+                    blockComponent.Copy(block);
+                    blockComponent.UpdateWalls();
+                }
+                newBlocks.Add(blockComponent);
             }    
         }
+        
+        for(int i = Blocks.Count - 1; i >= 0; --i)
+        {
+            DestroyImmediate(Blocks[i].gameObject);
+        }
+        Blocks.Clear();
+        Blocks.AddRange(newBlocks);
     }
 
     public bool CanMoveTo(Vector2 From, MovementCommand Direction, out Vector2 NewCoordinates)

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [Serializable]
 public enum MovementCommand
@@ -47,27 +48,28 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void AskMoveUp()
+    public void AskMoveUp(InputAction.CallbackContext ctx)
     {
-        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down)
             Command = MovementCommand.Up;
     }
     
-    public void AskMoveDown()
+    public void AskMoveDown(InputAction.CallbackContext ctx)
     {
-        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up)
             Command = MovementCommand.Down;
     }
     
-    public void AskMoveLeft()
+    public void AskMoveLeft(InputAction.CallbackContext ctx)
     {
-        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right)
             Command = MovementCommand.Left;   
+
     }
     
-    public void AskMoveRight()
+    public void AskMoveRight(InputAction.CallbackContext ctx)
     {
-        if(Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left)
             Command = MovementCommand.Right;
     }
 

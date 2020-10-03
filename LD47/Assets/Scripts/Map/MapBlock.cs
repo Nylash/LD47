@@ -12,16 +12,19 @@ public class MapBlock : MonoBehaviour
     [SerializeField] private Vector2 Coordinates;
     
     [Header("Walls")]
+    [SerializeField] private bool bIsFullWall = false;
     [SerializeField] private bool bHasWallTop = false;
     [SerializeField] private bool bHasWallLeft = false;
     [SerializeField] private bool bHasWallBottom = false;
     [SerializeField] private bool bHasWallRight = false;
     [SerializeField] private GameObject WallModel = null;
+    [SerializeField] private GameObject FullWallModel = null;
 
     [Header("Floor")]
     [SerializeField] private GameObject FloorModel = null;
     
     private GameObject[] WallsRef = {null, null, null, null};
+    private GameObject FullWallRef = null;
 
     private void Start()
     {
@@ -63,10 +66,27 @@ public class MapBlock : MonoBehaviour
 
     private void UpdateWalls()
     {
-        UpdateWall(bHasWallTop, 0, new Vector3(0,0,0.5f), new Vector3(0,90,0));
-        UpdateWall(bHasWallLeft, 1, new Vector3(-0.5f,0,0), Vector3.zero);
-        UpdateWall(bHasWallBottom, 2, new Vector3(0,0,-0.5f), new Vector3(0,90,0));
-        UpdateWall(bHasWallRight, 3, new Vector3(0.5f,0,0), Vector3.zero);
+        if(bIsFullWall && !FullWallRef)
+        {
+            FullWallRef = Instantiate(FullWallModel, transform);
+            bHasWallTop = true;
+            bHasWallLeft = true;
+            bHasWallBottom = true;
+            bHasWallRight = true;
+            foreach (GameObject item in WallsRef)
+            {
+                if (item)
+                    DestroyImmediate(item);
+            }
+            return;
+        }
+        if (!FullWallRef)
+        {
+            UpdateWall(bHasWallTop, 0, new Vector3(0, 0, 0.5f), new Vector3(0, 90, 0));
+            UpdateWall(bHasWallLeft, 1, new Vector3(-0.5f, 0, 0), Vector3.zero);
+            UpdateWall(bHasWallBottom, 2, new Vector3(0, 0, -0.5f), new Vector3(0, 90, 0));
+            UpdateWall(bHasWallRight, 3, new Vector3(0.5f, 0, 0), Vector3.zero);
+        }
     }
 
     private void UpdateWall(bool ShouldHaveWall, int WallIndex, Vector3 Location, Vector3 Rotation)

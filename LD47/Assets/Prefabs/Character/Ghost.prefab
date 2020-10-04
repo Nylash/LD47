@@ -75,6 +75,62 @@ MonoBehaviour:
     m_RotationOrder: 4
   GhostTrailPrefab: {fileID: 2615877348445281186, guid: 51c79386fa213ac4d92496f128a707fd, type: 3}
   Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &8744651459359251061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6758287511557413192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d66d1841e2938c4fb965bedc0346f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinMaxHeight: {x: 0.25, y: 0.75}
+  HoverLoopDuration: 2
+  HeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0.077467024
+      outSlope: 0.077467024
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 0
+      inSlope: 0.037784953
+      outSlope: 0.037784953
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12248088
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &6596930393233291260
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -140,6 +196,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 36dcd4fb233e3e34e83dc9846f5a1aee, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f481f2c8f210e5449ae956e41d2ad656, type: 3}
+--- !u!1 &6758287511557413192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 452404585289707188, guid: f481f2c8f210e5449ae956e41d2ad656, type: 3}
+  m_PrefabInstance: {fileID: 6596930393233291260}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6233423904244155378 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 940288318090982414, guid: f481f2c8f210e5449ae956e41d2ad656, type: 3}

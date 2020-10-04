@@ -1,5 +1,61 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6323268307369534765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8066124091844017935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d66d1841e2938c4fb965bedc0346f89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MinMaxHeight: {x: 0.25, y: 0.75}
+  HoverLoopDuration: 2
+  HeightCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.5
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.25
+      value: 1
+      inSlope: 0.077467024
+      outSlope: 0.077467024
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.3333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.75
+      value: 0
+      inSlope: 0.037784953
+      outSlope: 0.037784953
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.12248088
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.5
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8356068056992205698
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,6 +336,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f481f2c8f210e5449ae956e41d2ad656, type: 3}
+--- !u!1 &8066124091844017935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 452404585289707188, guid: f481f2c8f210e5449ae956e41d2ad656, type: 3}
+  m_PrefabInstance: {fileID: 7617806552348905915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7258520072730535349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 940288318090982414, guid: f481f2c8f210e5449ae956e41d2ad656, type: 3}

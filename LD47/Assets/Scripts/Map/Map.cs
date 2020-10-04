@@ -79,7 +79,7 @@ public class Map : EnhancedMonoBehaviour
             if (!found)
             {
                 ActiveBlockCoords.Remove(NewInactiveBlockCoords[i].GetPreviousCoordinates());
-                Button button = GetBlock(NewInactiveBlockCoords[i].GetPreviousCoordinates()).GetComponent<Button>();
+                ButtonGameplay button = GetBlock(NewInactiveBlockCoords[i].GetPreviousCoordinates()).GetComponent<ButtonGameplay>();
                 if(button)
                 {
                     button.InteractExit(NewInactiveBlockCoords[i]);
@@ -92,7 +92,7 @@ public class Map : EnhancedMonoBehaviour
             if (!ActiveBlockCoords.Contains(NewActiveBlockCoords[i].GetCoordinates()))
             {
                 ActiveBlockCoords.Add(NewActiveBlockCoords[i].GetCoordinates());
-                Button button = GetBlock(NewActiveBlockCoords[i].GetCoordinates()).GetComponent<Button>();
+                ButtonGameplay button = GetBlock(NewActiveBlockCoords[i].GetCoordinates()).GetComponent<ButtonGameplay>();
                 if(button)
                 {
                     button.InteractEnter(NewActiveBlockCoords[i]);

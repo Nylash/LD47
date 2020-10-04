@@ -1,12 +1,13 @@
 fileFormatVersion: 2
-guid: 727043021472c53439e68fc3f114b3e6
+guid: 85dd6088570d1d047ac4057862d8569c
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - ButtonModel: {fileID: 7460198894117647401, guid: fd02bd532dd7fd24bb0fe4d291793df0, type: 3}
   - materialsIndexer: {fileID: 11400000, guid: 54021229a9e5c5e4ca086bb35919d564, type: 2}
-  - ButtonRef: {instanceID: 0}
+  - ObjectRef: {instanceID: 0}
+  - MeshRef: {instanceID: 0}
+  - ButtonModel: {fileID: 7460198894117647401, guid: fd02bd532dd7fd24bb0fe4d291793df0, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -6,13 +6,15 @@ public class Door : InteractableObject
 {
     [SerializeField] private MovementCommand WallToConvertToDoor = MovementCommand.None;
     [HideInInspector] [SerializeField] private MovementCommand PreviousDirection = MovementCommand.None;
-    [SerializeField] private Material WallDefaultMaterial = null;
     
     protected override void EditorStart()
     {
         
         base.EditorStart();
         PreviousDirection = WallToConvertToDoor;
+
+        MeshRef.gameObject.tag = "Door";
+        MeshRef.GetComponent<MeshFilter>().mesh = GetOwner().DoorModel;
     }
 
     public override void InteractEnter(Character player)
@@ -38,7 +40,9 @@ public class Door : InteractableObject
         {
             if (MeshRef)
             {
-                MeshRef.sharedMaterial = WallDefaultMaterial;
+                MeshRef.sharedMaterial = GetOwner().WallDefaultMaterial;
+                MeshRef.GetComponent<MeshFilter>().sharedMesh = GetOwner().WallModel.GetComponentInChildren<MeshFilter>().sharedMesh;
+                MeshRef.gameObject.tag = "Untagged";
             }
             EditorStart();
         }

@@ -17,12 +17,14 @@ public class MapBlock : EnhancedMonoBehaviour
     [SerializeField] private bool bHasWallBottom = false;
     [SerializeField] private bool bHasWallRight = false;
     [HideInInspector]
-    [SerializeField] private GameObject WallModel = null;
+    [SerializeField] public GameObject WallModel = null;
     [HideInInspector]
     [SerializeField] private GameObject FullWallModel = null;
     [HideInInspector]
     [SerializeField] private GameObject FloorModel = null;
-    
+    [SerializeField] public Material WallDefaultMaterial = null;
+    [SerializeField] public Mesh DoorModel = null;
+
     [SerializeField]
     [HideInInspector]
     private GameObject[] WallsRef = {null, null, null, null};
@@ -78,7 +80,7 @@ public class MapBlock : EnhancedMonoBehaviour
         if(bIsFullWall && !FullWallRef)
         {
             FullWallRef = Instantiate(FullWallModel, transform);
-            FullWallRef.transform.localPosition += new Vector3(0,0.5f,0);
+            FullWallRef.transform.localPosition += new Vector3(0,0,0);
             bHasWallTop = true;
             bHasWallLeft = true;
             bHasWallBottom = true;
@@ -97,10 +99,10 @@ public class MapBlock : EnhancedMonoBehaviour
                 DestroyImmediate(FullWallRef);
             }
             
-            UpdateWall(bHasWallTop, 0, new Vector3(0, 0.5f, 0.5f), new Vector3(0, 90, 0));
-            UpdateWall(bHasWallLeft, 1, new Vector3(-0.5f, 0.5f, 0), Vector3.zero);
-            UpdateWall(bHasWallBottom, 2, new Vector3(0, 0.5f, -0.5f), new Vector3(0, 90, 0));
-            UpdateWall(bHasWallRight, 3, new Vector3(0.5f, 0.5f, 0), Vector3.zero);
+            UpdateWall(bHasWallTop, 0, new Vector3(0, 0, 0.5f), new Vector3(0, 90, 0));
+            UpdateWall(bHasWallLeft, 1, new Vector3(-0.5f, 0, 0), Vector3.zero);
+            UpdateWall(bHasWallBottom, 2, new Vector3(0, 0, -0.5f), new Vector3(0, 90, 0));
+            UpdateWall(bHasWallRight, 3, new Vector3(0.5f, 0, 0), Vector3.zero);
         }
     }
 

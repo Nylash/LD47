@@ -7,7 +7,8 @@ MonoImporter:
   - materialsIndexer: {fileID: 11400000, guid: 54021229a9e5c5e4ca086bb35919d564, type: 2}
   - ObjectRef: {instanceID: 0}
   - MeshRef: {instanceID: 0}
-  - wallDefaultMaterial: {fileID: 2100000, guid: e7cbcb7a1069e084487c532680a48c25, type: 2}
+  - WallDefaultMaterial: {fileID: 2100000, guid: 9dadd83d14803b04fa7522fb1d1a3d5d, type: 2}
+  - DoorModel: {fileID: -4259655174383198485, guid: 39265949f7e880149a2e4ab61d000d1d, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

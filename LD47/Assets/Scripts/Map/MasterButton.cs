@@ -23,7 +23,7 @@ public class MasterButton : MonoBehaviour
         }
         foreach (InteractableObject item in AllInteractableObjects)
         {
-            if (item.GetType() == typeof(Button) || item.GetType() == typeof(LoopPlate))
+            if (item.GetType() == typeof(Button))
             {
                 continue;
             }

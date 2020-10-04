@@ -14,12 +14,18 @@ public class UI_Manager : MonoBehaviour
 
     public bool bLevelPaused = false;
 
+    public VictoryItem[] victoryItems = null;
+    public int itemsToPickUp = 0;
+
     private void Awake()
     {
         if (instance == null)
             instance = this;
         else
             Destroy(this);
+
+        victoryItems = FindObjectsOfType<VictoryItem>();
+        itemsToPickUp = victoryItems.Length;
     }
 
     public void Pause()
@@ -34,6 +40,13 @@ public class UI_Manager : MonoBehaviour
     {
         bLevelPaused = true;
         victoryCanvas.enabled = true;
+    }
+
+    public void AskItemVictory()
+    {
+        itemsToPickUp--;
+        if (itemsToPickUp == 0)
+            Victory();
     }
 
     public void Replay()

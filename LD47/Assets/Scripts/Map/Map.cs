@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [ExecuteInEditMode]
 public class Map : EnhancedMonoBehaviour
@@ -19,7 +20,19 @@ public class Map : EnhancedMonoBehaviour
     [SerializeField] private GameObject GhostPrefab = null;
     private List<Character> Ghosts = new List<Character>();
 
+    public UnityAction OnGameOver;
+
     private Character PlayerCharacter = null;
+
+    protected override void GameStart()
+    {
+        OnGameOver += Test;
+    }
+
+    private void Test()
+    {
+        print("Gameover !");
+    }
     
     protected override void EditorUpdate()
     {
@@ -44,7 +57,11 @@ public class Map : EnhancedMonoBehaviour
         // The update player
         PlayerCharacter.DoUpdate();
         
-        // TODO : check ghost collision
+        // Check ghost collision
+        if (HasGhostOnTheSameBlock())
+        {
+            OnGameOver.Invoke();
+        }
         
         // Then update level
         for (int i = 0; i < NewInactiveBlockCoords.Count; ++i)
@@ -159,7 +176,7 @@ public class Map : EnhancedMonoBehaviour
         {
             foreach (Character otherGhost in Ghosts)
             {
-                if (ghost.GetCoordinates() == otherGhost.GetCoordinates())
+                if (ghost!= otherGhost && ghost.GetCoordinates() == otherGhost.GetCoordinates())
                 {
                     return true;
                 }
@@ -225,7 +242,10 @@ public class Map : EnhancedMonoBehaviour
             ghost.ReadNextOrder();
         }
         
-        // TODO : check ghost collision
+        if (HasGhostOnTheSameBlock())
+        {
+            OnGameOver.Invoke();
+        }
     }
 
     public void RegisterPlayer(Character Player)

@@ -28,10 +28,24 @@ public class Character : MonoBehaviour
     private Vector2 Coordinates = Vector2.zero;
 
     private Vector2 InitialCoordinates = Vector2.zero;
+
+    public void InitializeFromCharacter(Character Other)
+    {
+        SetInitialCoordinates(Other.InitialCoordinates);
+        Coordinates = InitialCoordinates;
+        PreviousCommand.AddRange(Other.PreviousCommand);
+        MapReference = Other.MapReference;
+        transform.position = MapReference.MapCoordinatesToWorldSpace(InitialCoordinates);
+
+        MapReference.CharacterOnBlock(Coordinates);
+    }
     
     private void Start()
     {
-        SetInitialCoordinates(Coordinates);
+        if (IsPlayer())
+        {
+            SetInitialCoordinates(Coordinates);    
+        }
         MapReference = FindObjectOfType<Map>();
     }
 
@@ -44,7 +58,11 @@ public class Character : MonoBehaviour
             if (MapReference.CanMoveTo(Coordinates, Command, out newCoordinates))
             {
                 Move(newCoordinates);
-                PreviousCommand.Add(Command);
+                if (IsPlayer())
+                {
+                    PreviousCommand.Add(Command);
+                    MapReference.UpdateGhosts();
+                }
             }
             
             Command = MovementCommand.None;
@@ -76,9 +94,24 @@ public class Character : MonoBehaviour
             Command = MovementCommand.Right;
     }
 
+    public void AskCreateNextGhost(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            CreateNextGhost();
+        }
+    }
+    
     public void CreateNextGhost()
     {
-        
+        if (PreviousCommand.Count >= 2)
+        {
+            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
+            MapReference.AddGhost(this);
+            
+            PreviousCommand.Clear();
+            InitialCoordinates = Coordinates;
+        }
     }
 
     private void Move(Vector2 newCoordinates)
@@ -99,5 +132,25 @@ public class Character : MonoBehaviour
     private void SetInitialCoordinates(Vector2 Coords)
     {
         InitialCoordinates = Coords;
+    }
+
+    public void ReadNextOrder()
+    {
+        if (CurrentCommandIndex == PreviousCommand.Count)
+        {
+            CurrentCommandIndex = 0;
+            Move(InitialCoordinates);
+        }
+        else
+        {
+            Command = PreviousCommand[CurrentCommandIndex];
+            CurrentCommandIndex++;            
+        }
+        
+    }
+
+    private bool IsPlayer()
+    {
+        return gameObject.GetComponent<PlayerInput>() != null;
     }
 }

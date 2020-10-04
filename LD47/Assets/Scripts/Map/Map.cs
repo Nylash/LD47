@@ -6,18 +6,17 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class Map : EnhancedMonoBehaviour
 {
-    [SerializeField] private Vector2 Size = new Vector2(10,10);
-    [SerializeField]
-    [HideInInspector]
-    private Vector2 PreviousSize = new Vector2(-1,-1);
+    [SerializeField] private Vector2 Size = new Vector2(10, 10);
+    [SerializeField] [HideInInspector] private Vector2 PreviousSize = new Vector2(-1, -1);
     [SerializeField] private List<MapBlock> Blocks = new List<MapBlock>();
 
-    [SerializeField] private bool RefreshAssets = false; 
+    [SerializeField] private bool RefreshAssets = false;
 
     private List<Vector2> ActiveBlockCoords = new List<Vector2>();
     private List<Vector2> NewActiveBlockCoords = new List<Vector2>();
     private List<Vector2> NewInactiveBlockCoords = new List<Vector2>();
-    
+
+    [SerializeField] private GameObject GhostPrefab = null;
     private List<Character> Ghosts = new List<Character>();
     
     protected override void EditorUpdate()
@@ -173,6 +172,17 @@ public class Map : EnhancedMonoBehaviour
 
     public void AddGhost(Character NewGhost)
     {
-        
+        GameObject go = Instantiate(GhostPrefab);
+        Character ghost = go.GetComponent<Character>();
+        ghost.InitializeFromCharacter(NewGhost);
+        Ghosts.Add(ghost);
+    }
+
+    public void UpdateGhosts()
+    {
+        foreach (Character ghost in Ghosts)
+        {
+            ghost.ReadNextOrder();
+        }
     }
 }

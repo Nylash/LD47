@@ -73,6 +73,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  GhostTrailPrefab: {fileID: 2615877348445281186, guid: 51c79386fa213ac4d92496f128a707fd, type: 3}
+  Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1001 &6596930393233291260
 PrefabInstance:
   m_ObjectHideFlags: 0

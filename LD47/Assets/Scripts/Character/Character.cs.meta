@@ -3,7 +3,9 @@ guid: 6423f25deb6ad1a45aaee48c001eefdf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - MapReference: {instanceID: 0}
+  - GhostTrailPrefab: {fileID: 2615877348445281186, guid: 51c79386fa213ac4d92496f128a707fd, type: 3}
   executionOrder: 100
   icon: {instanceID: 0}
   userData: 

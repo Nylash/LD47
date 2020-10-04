@@ -123,3 +123,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  GhostTrailPrefab: {fileID: 0}
+  Color: {r: 0, g: 1, b: 0.083200455, a: 1}

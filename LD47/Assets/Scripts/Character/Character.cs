@@ -45,6 +45,14 @@ public class Character : MonoBehaviour
 
     public UnityAction OnMovementComplete;
 
+    [Header("FX")] 
+    [SerializeField]
+    private GameObject GhostTrailPrefab = null;
+
+    [SerializeField] private Color Color = Color.white;
+
+    private GhostPath GhostPath = null;
+
     public void InitializeFromCharacter(Character Other)
     {
         SetInitialCoordinates(Other.InitialCoordinates);
@@ -54,9 +62,11 @@ public class Character : MonoBehaviour
         transform.position = MapReference.MapCoordinatesToWorldSpace(InitialCoordinates);
 
         MapReference.CharacterOnBlock(this);
+        GhostPath = Other.GhostPath;
+        GhostPath.SetColor(Color);
     }
     
-    private void Start()
+    private void Awake()
     {
         if (IsPlayer())
         {
@@ -64,6 +74,10 @@ public class Character : MonoBehaviour
             MapReference = FindObjectOfType<Map>();
             MapReference.RegisterPlayer(this);
             MapReference.OnGameOver += GameOver;
+            GameObject go = Instantiate(GhostTrailPrefab, MapReference.MapCoordinatesToWorldSpace(Coordinates), Quaternion.Euler(0,0,0));
+            GhostPath = go.GetComponent<GhostPath>();
+            GhostPath.SetInitialPoint(InitialCoordinates);
+            GhostPath.SetColor(Color);
         }
     }
 
@@ -110,7 +124,14 @@ public class Character : MonoBehaviour
             Vector2 newCoordinates;
             if (MapReference.CanMoveTo(Coordinates, Command, out newCoordinates))
             {
-                Move(newCoordinates);
+                if ((int)(newCoordinates - Coordinates).magnitude == 1)
+                {
+                    Move(newCoordinates);
+                }
+                else
+                {
+                    Teleport(newCoordinates);
+                }
                 if (IsPlayer())
                 {
                     if (GhostCreationRequested)
@@ -119,6 +140,7 @@ public class Character : MonoBehaviour
                         GhostCreationRequested = false;
                     }
                     PreviousCommand.Add(Command);
+                    GhostPath.AddCommand(Command);
                 }
             }
             
@@ -166,8 +188,13 @@ public class Character : MonoBehaviour
             PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
             MapReference.AddGhost(this);
             
+            GameObject go = Instantiate(GhostTrailPrefab, MapReference.MapCoordinatesToWorldSpace(Coordinates), Quaternion.Euler(0,0,0));
+            GhostPath = go.GetComponent<GhostPath>();
+            
             PreviousCommand.Clear();
             InitialCoordinates = PreviousCoordinates;
+            GhostPath.SetInitialPoint(InitialCoordinates);
+            GhostPath.SetColor(Color);
         }
     }
 

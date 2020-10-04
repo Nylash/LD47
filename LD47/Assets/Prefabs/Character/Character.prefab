@@ -125,6 +125,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  GhostTrailPrefab: {fileID: 2615877348445281186, guid: 51c79386fa213ac4d92496f128a707fd, type: 3}
+  Color: {r: 1, g: 0, b: 0.8950033, a: 1}
 --- !u!114 &8356068056992205699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,10 +168,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f777a32f-3e64-4b60-a596-85e857ae917c
     m_ActionName: Player/New action
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 10ba85f8-76fc-4c76-828c-f0b1c7eaee56
-    m_ActionName: UI/Cancel[/Keyboard/escape,/Keyboard/escape,/Mouse/backButton]
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e64252cb-9e52-4966-b027-99bb97f2899b
@@ -238,6 +236,14 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 01168adc-7191-449b-b02f-db05f1a48809
     m_ActionName: Player/CreateGhost[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 6a2d9c19-91fd-4d0f-be85-5adb55140e17
+    m_ActionName: Player/Pause[/Keyboard/escape,/Keyboard/p]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0873c911-0fee-4794-a232-f405fb01b7b4
+    m_ActionName: UI/Navigation[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

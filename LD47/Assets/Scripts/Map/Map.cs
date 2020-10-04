@@ -57,6 +57,7 @@ public class Map : EnhancedMonoBehaviour
         IsUpdating = true;
         
         // First update ghosts
+        PlayerCharacter.DoUpdate();
         UpdateGhosts();
     }
 
@@ -263,7 +264,18 @@ public class Map : EnhancedMonoBehaviour
     void OnPlayerMovementEnded()
     {
         // Then update map
-        UpdateMap();
+        if (!GhostAreMoving() && !IsUpdatingGhost)
+        {
+            // Check ghost collision
+            if (HasGhostOnTheSameBlock())
+            {
+                OnGameOver.Invoke();
+            }
+            else
+            {
+                UpdateMap();
+            }
+        }
         
         IsUpdating = false;
     }
@@ -283,15 +295,16 @@ public class Map : EnhancedMonoBehaviour
     
     void OnGhostMovementEnded()
     {
-        if (!GhostAreMoving() && !IsUpdatingGhost)
+        if (!GhostAreMoving() && !IsUpdatingGhost && !PlayerCharacter.IsMoving)
         {
-            // Then update player
-            PlayerCharacter.DoUpdate();
-        
             // Check ghost collision
             if (HasGhostOnTheSameBlock())
             {
                 OnGameOver.Invoke();
+            }
+            else
+            {
+                UpdateMap();
             }
         }
     }

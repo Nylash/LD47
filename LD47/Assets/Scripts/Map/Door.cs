@@ -20,13 +20,13 @@ public class Door : InteractableObject
     public override void InteractEnter(Character player)
     {
         GetOwner().UnlockDirection(WallToConvertToDoor);
-        ObjectRef.transform.position -= new Vector3(0, 1, 0);
+        ObjectRef.GetComponent<Animator>().SetTrigger("Open");
     }
 
     public override void InteractExit(Character player)
     {
         GetOwner().LockDirection(WallToConvertToDoor);
-        ObjectRef.transform.position += new Vector3(0, 1, 0);
+        ObjectRef.GetComponent<Animator>().SetTrigger("Close");
     }
 
     protected override GameObject GetObjectRef()

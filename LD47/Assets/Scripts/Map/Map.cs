@@ -57,8 +57,8 @@ public class Map : EnhancedMonoBehaviour
         IsUpdating = true;
         
         // First update ghosts
-        UpdateGhosts();
         PlayerCharacter.DoUpdate();
+        UpdateGhosts();
     }
 
     private void UpdateMap()

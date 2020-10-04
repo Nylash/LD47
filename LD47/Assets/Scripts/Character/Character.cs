@@ -56,6 +56,17 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (IsPlayer())
+        {
+            if (Command != MovementCommand.None)
+            {
+                MapReference.ManualUpdate();
+            }
+        }
+    }
+
+    public void DoUpdate()
+    {
         if (Command != MovementCommand.None)
         {
             Vector2 newCoordinates;
@@ -64,14 +75,12 @@ public class Character : MonoBehaviour
                 Move(newCoordinates);
                 if (IsPlayer())
                 {
-                    PreviousCommand.Add(Command);
-                    MapReference.UpdateGhosts();
                     if (GhostCreationRequested)
                     {
                         CreateNextGhost();
                         GhostCreationRequested = false;
                     }
-                    
+                    PreviousCommand.Add(Command);
                 }
             }
             
@@ -116,12 +125,11 @@ public class Character : MonoBehaviour
     {
         if (PreviousCommand.Count >= 2)
         {
-            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
-            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
+            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
             MapReference.AddGhost(this);
             
             PreviousCommand.Clear();
-            InitialCoordinates = Coordinates;
+            InitialCoordinates = PreviousCoordinates;
         }
     }
 
@@ -157,7 +165,7 @@ public class Character : MonoBehaviour
             Command = PreviousCommand[CurrentCommandIndex];
             CurrentCommandIndex++;            
         }
-        
+        DoUpdate();
     }
 
     private bool IsPlayer()

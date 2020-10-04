@@ -36,8 +36,17 @@ public class Map : EnhancedMonoBehaviour
         }
     }
     
-    protected override void GameUpdate()
+    public void ManualUpdate()
     {
+        // First update ghosts
+        UpdateGhosts();
+        
+        // The update player
+        PlayerCharacter.DoUpdate();
+        
+        // TODO : check ghost collision
+        
+        // Then update level
         for (int i = 0; i < NewInactiveBlockCoords.Count; ++i)
         {
             // If the block wasn't activated again this frame, delete it trigger exit on buttons
@@ -215,6 +224,8 @@ public class Map : EnhancedMonoBehaviour
         {
             ghost.ReadNextOrder();
         }
+        
+        // TODO : check ghost collision
     }
 
     public void RegisterPlayer(Character Player)

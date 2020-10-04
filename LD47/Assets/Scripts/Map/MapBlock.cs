@@ -22,6 +22,8 @@ public class MapBlock : EnhancedMonoBehaviour
     [SerializeField] private GameObject FullWallModel = null;
     [HideInInspector]
     [SerializeField] private GameObject FloorModel = null;
+    [SerializeField] private Material FloorEven = null;
+    [SerializeField] private Material FloorOdd = null;
     [SerializeField] public Material WallDefaultMaterial = null;
     [SerializeField] public Mesh DoorModel = null;
 
@@ -59,10 +61,12 @@ public class MapBlock : EnhancedMonoBehaviour
         if (!FloorRef)
         {
             FloorRef = Instantiate(FloorModel, transform);
+            if ((Coordinates.x + Coordinates.y) % 2 == 0)
+                FloorRef.GetComponent<MeshRenderer>().material = FloorEven;
+            else
+                FloorRef.GetComponent<MeshRenderer>().material = FloorOdd;
         }
     }
-
-    
 
     protected override void EditorUpdate()
     {

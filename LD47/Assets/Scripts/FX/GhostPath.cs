@@ -66,7 +66,6 @@ public class GhostPath : MonoBehaviour
         {
             TimeElapsed[i] += Time.deltaTime;
             float alpha = Mathf.Clamp01(TimeElapsed[i] / MovingSpeed);
-            print(alpha);
             TrailSpawned[i].gameObject.transform.position = Vector3.Lerp(PositionMovementStart[i], PositionMovementEnd[i], alpha) + Vector3.up * Height;
             if (alpha >= 1 && !WaitingDeath[i])
             {

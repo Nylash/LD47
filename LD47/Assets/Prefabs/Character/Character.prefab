@@ -132,6 +132,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   GhostTrailPrefab: {fileID: 2615877348445281186, guid: 51c79386fa213ac4d92496f128a707fd, type: 3}
+  MaterialIndexer: {fileID: 11400000, guid: 54021229a9e5c5e4ca086bb35919d564, type: 2}
   Color: {r: 1, g: 0, b: 0.8950033, a: 1}
 --- !u!114 &8356068056992205699
 MonoBehaviour:

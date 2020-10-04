@@ -29,7 +29,7 @@ public class Character : MonoBehaviour
 
     private Vector2 InitialCoordinates = Vector2.zero;
 
-    private bool GhostCreationRequested = false;
+    public bool GhostCreationRequested = false;
 
     public void InitializeFromCharacter(Character Other)
     {
@@ -114,6 +114,7 @@ public class Character : MonoBehaviour
     {
         if (PreviousCommand.Count >= 2)
         {
+            print("coucou");
             PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
             PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
             MapReference.AddGhost(this);

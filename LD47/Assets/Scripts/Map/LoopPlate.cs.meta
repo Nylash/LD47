@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4add879dd4505c242a7e06cdbd5d9647
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - materialsIndexer: {instanceID: 0}
+  - ObjectRef: {instanceID: 0}
+  - MeshRef: {instanceID: 0}
+  - ButtonModel: {instanceID: 0}
+  - LoopPlateModel: {fileID: 3508072282420467483, guid: 0350c917b53396146a4c1671c6663e25, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

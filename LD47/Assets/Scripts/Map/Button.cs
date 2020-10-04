@@ -11,19 +11,19 @@ public class Button : InteractableObject
     [HideInInspector]
     [SerializeField] private GameObject ButtonModel = null;
 
-    public override void InteractEnter()
+    public override void InteractEnter(Character player)
     {
         foreach (InteractableObject item in relatedObjects)
         {
-            item.InteractEnter();
+            item.InteractEnter(player);
         }
     }
 
-    public override void InteractExit()
+    public override void InteractExit(Character player)
     {
         foreach (InteractableObject item in relatedObjects)
         {
-            item.InteractExit();
+            item.InteractExit(player);
         }
     }
 

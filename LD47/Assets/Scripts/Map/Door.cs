@@ -15,13 +15,13 @@ public class Door : InteractableObject
         PreviousDirection = WallToConvertToDoor;
     }
 
-    public override void InteractEnter()
+    public override void InteractEnter(Character player)
     {
         GetOwner().UnlockDirection(WallToConvertToDoor);
         ObjectRef.transform.position -= new Vector3(0, .5f, 0);
     }
 
-    public override void InteractExit()
+    public override void InteractExit(Character player)
     {
         GetOwner().LockDirection(WallToConvertToDoor);
         ObjectRef.transform.position += new Vector3(0, .5f, 0);

@@ -27,12 +27,12 @@ public class InteractableObject : EnhancedMonoBehaviour
         }
     }
 
-    public virtual void InteractEnter()
+    public virtual void InteractEnter(Character player)
     {
         
     }
 
-    public virtual void InteractExit()
+    public virtual void InteractExit(Character player)
     {
         
     }

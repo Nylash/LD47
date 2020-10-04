@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
 
     public bool GhostCreationRequested = false;
 
+    private int NumberOfGhostCreated = 0;
+    
     // Movement
     [Header("Movement")]
     [HideInInspector] public bool IsMoving = false;
@@ -48,6 +50,8 @@ public class Character : MonoBehaviour
     [Header("FX")] 
     [SerializeField]
     private GameObject GhostTrailPrefab = null;
+    [SerializeField]
+    private MaterialsIndexer MaterialIndexer = null;
 
     [SerializeField] private Color Color = Color.white;
 
@@ -89,6 +93,8 @@ public class Character : MonoBehaviour
             TimeElapsedSinceMovementAsked += Time.deltaTime;
             float alpha = Mathf.Clamp01(TimeElapsedSinceMovementAsked / MovementSpeed);
             transform.position = Vector3.Lerp(PositionMovementStart, PositionMovementEnd, MovementCurve.Evaluate(alpha));
+            transform.rotation = Quaternion.Lerp(transform.rotation,
+                Quaternion.LookRotation(PositionMovementStart - PositionMovementEnd), alpha);
             if (alpha >= 1)
             {
                 IsMoving = false;
@@ -186,7 +192,9 @@ public class Character : MonoBehaviour
         if (PreviousCommand.Count >= 2)
         {
             PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
-            MapReference.AddGhost(this);
+            Character ghost = MapReference.AddGhost(this);
+            ghost.SetColor(MaterialIndexer.GhostColors[NumberOfGhostCreated % MaterialIndexer.GhostColors.Length]);
+            NumberOfGhostCreated++;
             
             GameObject go = Instantiate(GhostTrailPrefab, MapReference.MapCoordinatesToWorldSpace(Coordinates), Quaternion.Euler(0,0,0));
             GhostPath = go.GetComponent<GhostPath>();
@@ -275,5 +283,18 @@ public class Character : MonoBehaviour
     {
         if (ctx.started)
             UI_Manager.instance.Pause();
+    }
+
+    public void SetColor(Color color)
+    {
+        Color = color;
+        GhostPath.SetColor(color);
+        
+        //TODO apply color to mesh
+        SkinnedMeshRenderer meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        foreach (Material mat in meshRenderer.materials)
+        {
+            mat.SetColor("Color_604A5A12",color); 
+        }
     }
 }

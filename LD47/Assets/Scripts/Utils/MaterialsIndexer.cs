@@ -6,4 +6,7 @@ using UnityEngine;
 public class MaterialsIndexer : ScriptableObject
 {
     public Material[] materials;
+
+    [ColorUsage(true,true)]
+    public Color[] GhostColors;
 }

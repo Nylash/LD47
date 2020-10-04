@@ -226,13 +226,14 @@ public class Map : EnhancedMonoBehaviour
         NewInactiveBlockCoords.Add(_character);
     }
 
-    public void AddGhost(Character NewGhost)
+    public Character AddGhost(Character NewGhost)
     {
         GameObject go = Instantiate(GhostPrefab);
         Character ghost = go.GetComponent<Character>();
         ghost.InitializeFromCharacter(NewGhost);
         ghost.OnMovementComplete += OnGhostMovementEnded;
         Ghosts.Add(ghost);
+        return ghost;
     }
 
     public void UpdateGhosts()

@@ -2283,6 +2283,7 @@ MonoBehaviour:
   - {fileID: 617106914}
   - {fileID: 571490572}
   RefreshAssets: 0
+  GhostPrefab: {fileID: 2363551567409886830, guid: db4d207171e2bce4d8fd6c9c88253812, type: 3}
 --- !u!4 &457727341
 Transform:
   m_ObjectHideFlags: 0

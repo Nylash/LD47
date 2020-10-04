@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 [Serializable]
@@ -18,28 +19,31 @@ public enum MovementCommand
 public class Character : MonoBehaviour
 {
     [SerializeField] private Map MapReference = null;
-    
+
     private MovementCommand Command = MovementCommand.None;
-    
+
     private List<MovementCommand> PreviousCommand = new List<MovementCommand>();
     private int CurrentCommandIndex = 0;
-    
-    [SerializeField]
-    private Vector2 Coordinates = Vector2.zero;
+
+    [SerializeField] private Vector2 Coordinates = Vector2.zero;
     private Vector2 PreviousCoordinates = Vector2.zero;
-    
+
     private Vector2 InitialCoordinates = Vector2.zero;
 
     public bool GhostCreationRequested = false;
-    
+
     // Movement
     [Header("Movement")]
-    private bool IsMoving = false;
+    [HideInInspector] public bool IsMoving = false;
     private Vector3 PositionMovementStart = Vector3.zero;
     private Vector3 PositionMovementEnd = Vector3.zero;
     [SerializeField] private float MovementSpeed = 0.5f;
     private float TimeElapsedSinceMovementAsked = 0;
     [SerializeField] private AnimationCurve MovementCurve = new AnimationCurve();
+
+    private bool LoopLocked = false;
+
+    public UnityAction OnMovementComplete;
 
     public void InitializeFromCharacter(Character Other)
     {
@@ -59,6 +63,7 @@ public class Character : MonoBehaviour
             SetInitialCoordinates(Coordinates);
             MapReference = FindObjectOfType<Map>();
             MapReference.RegisterPlayer(this);
+            MapReference.OnGameOver += GameOver;
         }
     }
 
@@ -73,6 +78,7 @@ public class Character : MonoBehaviour
             if (alpha >= 1)
             {
                 IsMoving = false;
+                OnMovementComplete.Invoke();
             }
         }
         else
@@ -86,7 +92,10 @@ public class Character : MonoBehaviour
                     {
                         MapReference.ManualUpdate();
                     }
-                    Command = MovementCommand.None;
+                    else
+                    {
+                        Command = MovementCommand.None;
+                    }
                 }
             }
         }
@@ -119,32 +128,32 @@ public class Character : MonoBehaviour
 
     public void AskMoveUp(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked)
             Command = MovementCommand.Up;
     }
     
     public void AskMoveDown(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked)
             Command = MovementCommand.Down;
     }
     
     public void AskMoveLeft(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked)
             Command = MovementCommand.Left;   
 
     }
     
     public void AskMoveRight(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving)
+        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked)
             Command = MovementCommand.Right;
     }
 
     public void AskCreateNextGhost(InputAction.CallbackContext ctx)
     {
-        if (ctx.started && !IsMoving)
+        if (ctx.started)
         {
             GhostCreationRequested = true;
         }
@@ -186,6 +195,8 @@ public class Character : MonoBehaviour
         transform.position = MapReference.MapCoordinatesToWorldSpace(newCoordinates);
 
         MapReference.CharacterOnBlock(this);
+        
+        OnMovementComplete.Invoke();
     }
 
     private MovementCommand GetLastCommand()
@@ -226,5 +237,10 @@ public class Character : MonoBehaviour
     public Vector2 GetPreviousCoordinates()
     {
         return PreviousCoordinates;
+    }
+
+    private void GameOver()
+    {
+        LoopLocked = true;
     }
 }

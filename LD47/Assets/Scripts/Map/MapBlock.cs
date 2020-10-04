@@ -78,6 +78,7 @@ public class MapBlock : EnhancedMonoBehaviour
         if(bIsFullWall && !FullWallRef)
         {
             FullWallRef = Instantiate(FullWallModel, transform);
+            FullWallRef.transform.localPosition += new Vector3(0,0.5f,0);
             bHasWallTop = true;
             bHasWallLeft = true;
             bHasWallBottom = true;
@@ -96,10 +97,10 @@ public class MapBlock : EnhancedMonoBehaviour
                 DestroyImmediate(FullWallRef);
             }
             
-            UpdateWall(bHasWallTop, 0, new Vector3(0, 0, 0.5f), new Vector3(0, 90, 0));
-            UpdateWall(bHasWallLeft, 1, new Vector3(-0.5f, 0, 0), Vector3.zero);
-            UpdateWall(bHasWallBottom, 2, new Vector3(0, 0, -0.5f), new Vector3(0, 90, 0));
-            UpdateWall(bHasWallRight, 3, new Vector3(0.5f, 0, 0), Vector3.zero);
+            UpdateWall(bHasWallTop, 0, new Vector3(0, 0.5f, 0.5f), new Vector3(0, 90, 0));
+            UpdateWall(bHasWallLeft, 1, new Vector3(-0.5f, 0.5f, 0), Vector3.zero);
+            UpdateWall(bHasWallBottom, 2, new Vector3(0, 0.5f, -0.5f), new Vector3(0, 90, 0));
+            UpdateWall(bHasWallRight, 3, new Vector3(0.5f, 0.5f, 0), Vector3.zero);
         }
     }
 

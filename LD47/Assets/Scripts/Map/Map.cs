@@ -24,14 +24,12 @@ public class Map : EnhancedMonoBehaviour
 
     private Character PlayerCharacter = null;
 
+    private bool IsUpdating = false;
+    private bool IsUpdatingGhost = false;
+
     protected override void GameStart()
     {
-        OnGameOver += Test;
-    }
-
-    private void Test()
-    {
-        print("Gameover !");
+        
     }
     
     protected override void EditorUpdate()
@@ -51,19 +49,19 @@ public class Map : EnhancedMonoBehaviour
     
     public void ManualUpdate()
     {
+        if (IsUpdating)
+        {
+            return;
+        }
+
+        IsUpdating = true;
+        
         // First update ghosts
         UpdateGhosts();
-        
-        // The update player
-        PlayerCharacter.DoUpdate();
-        
-        // Check ghost collision
-        if (HasGhostOnTheSameBlock())
-        {
-            OnGameOver.Invoke();
-        }
-        
-        // Then update level
+    }
+
+    private void UpdateMap()
+    {
         for (int i = 0; i < NewInactiveBlockCoords.Count; ++i)
         {
             // If the block wasn't activated again this frame, delete it trigger exit on buttons
@@ -232,24 +230,70 @@ public class Map : EnhancedMonoBehaviour
         GameObject go = Instantiate(GhostPrefab);
         Character ghost = go.GetComponent<Character>();
         ghost.InitializeFromCharacter(NewGhost);
+        ghost.OnMovementComplete += OnGhostMovementEnded;
         Ghosts.Add(ghost);
     }
 
     public void UpdateGhosts()
     {
-        foreach (Character ghost in Ghosts)
+        IsUpdatingGhost = true;
+        int numberOfGhostAtStart = Ghosts.Count;
+        for (int i = 0; i < numberOfGhostAtStart; ++i)
         {
-            ghost.ReadNextOrder();
+            Ghosts[i].ReadNextOrder();
         }
+        IsUpdatingGhost = false;
         
         if (HasGhostOnTheSameBlock())
         {
             OnGameOver.Invoke();
+        }
+        else
+        {
+            OnGhostMovementEnded();
         }
     }
 
     public void RegisterPlayer(Character Player)
     {
         PlayerCharacter = Player;
+        PlayerCharacter.OnMovementComplete += OnPlayerMovementEnded;
     }
+
+    void OnPlayerMovementEnded()
+    {
+        // Then update map
+        UpdateMap();
+        
+        IsUpdating = false;
+    }
+
+    private bool GhostAreMoving()
+    {
+        foreach (var ghost in Ghosts)
+        {
+            if (ghost.IsMoving)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+    
+    void OnGhostMovementEnded()
+    {
+        if (!GhostAreMoving() && !IsUpdatingGhost)
+        {
+            // Then update player
+            PlayerCharacter.DoUpdate();
+        
+            // Check ghost collision
+            if (HasGhostOnTheSameBlock())
+            {
+                OnGameOver.Invoke();
+            }
+        }
+    }
+    
 }

@@ -97,6 +97,7 @@ MonoBehaviour:
   MapReference: {fileID: 0}
   Coordinates: {x: 0, y: 0}
   GhostCreationRequested: 0
+  IsMoving: 0
   MovementSpeed: 0.5
   MovementCurve:
     serializedVersion: 2

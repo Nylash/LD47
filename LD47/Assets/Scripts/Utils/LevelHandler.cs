@@ -6,9 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class LevelHandler : MonoBehaviour
 {
+    public Canvas mainCanvas;
+    public Canvas levelSelectionCanvas;
+
     public void LoadLevel(int levelIndex)
     {
         SceneManager.LoadScene(levelIndex);
+    }
+
+    public void SwitchCanvas()
+    {
+        mainCanvas.enabled = !mainCanvas.enabled;
+        levelSelectionCanvas.enabled = !levelSelectionCanvas.enabled;
     }
 
     public void QuitGame()

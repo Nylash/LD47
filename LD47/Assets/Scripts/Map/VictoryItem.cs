@@ -11,11 +11,18 @@ public class VictoryItem : ButtonGameplay
     {
         UI_Manager.instance.AskItemVictory();
         Destroy(ObjectRef);
+        Destroy(this);
     }
 
     public override void InteractExit(Character player)
     {
         return;
+    }
+
+    protected override void GameStart()
+    {
+        base.GameStart();
+        GetObjectRef().GetComponent<Animator>().speed = Random.Range(.5f, .8f);
     }
 
     protected override void EditorStart()

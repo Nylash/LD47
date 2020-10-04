@@ -60,7 +60,12 @@ public class Character : MonoBehaviour
         {
             if (Command != MovementCommand.None)
             {
-                MapReference.ManualUpdate();
+                Vector2 newCoordinates;
+                if (MapReference.CanMoveTo(Coordinates, Command, out newCoordinates))
+                {
+                    MapReference.ManualUpdate();
+                }
+                Command = MovementCommand.None;
             }
         }
     }

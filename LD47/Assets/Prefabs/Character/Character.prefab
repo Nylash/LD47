@@ -99,7 +99,7 @@ MonoBehaviour:
   MapReference: {fileID: 0}
   Coordinates: {x: 0, y: 0}
   GhostCreationRequested: 0
-  MovementSpeed: 0.5
+  MovementSpeed: 0.3
   MovementCurve:
     serializedVersion: 2
     m_Curve:

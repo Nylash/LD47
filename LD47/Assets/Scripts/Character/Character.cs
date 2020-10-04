@@ -26,7 +26,8 @@ public class Character : MonoBehaviour
     
     [SerializeField]
     private Vector2 Coordinates = Vector2.zero;
-
+    private Vector2 PreviousCoordinates = Vector2.zero;
+    
     private Vector2 InitialCoordinates = Vector2.zero;
 
     public bool GhostCreationRequested = false;
@@ -39,16 +40,17 @@ public class Character : MonoBehaviour
         MapReference = Other.MapReference;
         transform.position = MapReference.MapCoordinatesToWorldSpace(InitialCoordinates);
 
-        MapReference.CharacterOnBlock(Coordinates);
+        MapReference.CharacterOnBlock(this);
     }
     
     private void Start()
     {
         if (IsPlayer())
         {
-            SetInitialCoordinates(Coordinates);    
+            SetInitialCoordinates(Coordinates);
+            MapReference = FindObjectOfType<Map>();
+            MapReference.RegisterPlayer(this);
         }
-        MapReference = FindObjectOfType<Map>();
     }
 
     // Update is called once per frame
@@ -114,7 +116,6 @@ public class Character : MonoBehaviour
     {
         if (PreviousCommand.Count >= 2)
         {
-            print("coucou");
             PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
             PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
             MapReference.AddGhost(this);
@@ -126,12 +127,12 @@ public class Character : MonoBehaviour
 
     private void Move(Vector2 newCoordinates)
     {
-        MapReference.CharacterLeaveBlock(Coordinates);
-        
+        MapReference.CharacterLeaveBlock(this);
+        PreviousCoordinates = Coordinates;
         Coordinates = newCoordinates;
         transform.position = MapReference.MapCoordinatesToWorldSpace(newCoordinates);
 
-        MapReference.CharacterOnBlock(Coordinates);
+        MapReference.CharacterOnBlock(this);
     }
 
     private MovementCommand GetLastCommand()
@@ -162,5 +163,15 @@ public class Character : MonoBehaviour
     private bool IsPlayer()
     {
         return gameObject.GetComponent<PlayerInput>() != null;
+    }
+
+    public Vector2 GetCoordinates()
+    {
+        return Coordinates;
+    }
+    
+    public Vector2 GetPreviousCoordinates()
+    {
+        return PreviousCoordinates;
     }
 }

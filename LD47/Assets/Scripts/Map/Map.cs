@@ -13,11 +13,13 @@ public class Map : EnhancedMonoBehaviour
     [SerializeField] private bool RefreshAssets = false;
 
     private List<Vector2> ActiveBlockCoords = new List<Vector2>();
-    private List<Vector2> NewActiveBlockCoords = new List<Vector2>();
-    private List<Vector2> NewInactiveBlockCoords = new List<Vector2>();
+    private List<Character> NewActiveBlockCoords = new List<Character>();
+    private List<Character> NewInactiveBlockCoords = new List<Character>();
 
     [SerializeField] private GameObject GhostPrefab = null;
     private List<Character> Ghosts = new List<Character>();
+
+    private Character PlayerCharacter = null;
     
     protected override void EditorUpdate()
     {
@@ -39,26 +41,36 @@ public class Map : EnhancedMonoBehaviour
         for (int i = 0; i < NewInactiveBlockCoords.Count; ++i)
         {
             // If the block wasn't activated again this frame, delete it trigger exit on buttons
-            if (!NewActiveBlockCoords.Contains(NewInactiveBlockCoords[i]))
+            bool found = false;
+            foreach (Character character in NewActiveBlockCoords)
             {
-                ActiveBlockCoords.Remove(NewInactiveBlockCoords[i]);
-                Button button = GetBlock(NewInactiveBlockCoords[i]).GetComponent<Button>();
+                if (character.GetCoordinates() == NewInactiveBlockCoords[i].GetPreviousCoordinates())
+                {
+                    found = true;
+                    break;
+                }
+            }
+            
+            if (!found)
+            {
+                ActiveBlockCoords.Remove(NewInactiveBlockCoords[i].GetPreviousCoordinates());
+                Button button = GetBlock(NewInactiveBlockCoords[i].GetPreviousCoordinates()).GetComponent<Button>();
                 if(button)
                 {
-                    button.InteractExit();
+                    button.InteractExit(NewInactiveBlockCoords[i]);
                 }
             }
         }
         for (int i = 0; i < NewActiveBlockCoords.Count; ++i)
         {
             // If the block wasn't activated before, add it and trigger button enter
-            if (!ActiveBlockCoords.Contains(NewActiveBlockCoords[i]))
+            if (!ActiveBlockCoords.Contains(NewActiveBlockCoords[i].GetCoordinates()))
             {
-                ActiveBlockCoords.Add(NewActiveBlockCoords[i]);
-                Button button = GetBlock(NewActiveBlockCoords[i]).GetComponent<Button>();
+                ActiveBlockCoords.Add(NewActiveBlockCoords[i].GetCoordinates());
+                Button button = GetBlock(NewActiveBlockCoords[i].GetCoordinates()).GetComponent<Button>();
                 if(button)
                 {
-                    button.InteractEnter();
+                    button.InteractEnter(NewActiveBlockCoords[i]);
                 }
             }
         }
@@ -103,7 +115,6 @@ public class Map : EnhancedMonoBehaviour
         NewCoordinates = From;
         if (GetBlock(From).BlockMovement(Direction))
         {
-            print("Block by current");
             return false;
         }
         
@@ -127,11 +138,31 @@ public class Map : EnhancedMonoBehaviour
 
         if (GetBlock(NewCoordinates).BlockMovement(Direction, false))
         {
-            print("Blocked by other");
             return false;
         }
 
         return true;
+    }
+
+    public bool HasGhostOnTheSameBlock()
+    {
+        foreach (Character ghost in Ghosts)
+        {
+            foreach (Character otherGhost in Ghosts)
+            {
+                if (ghost.GetCoordinates() == otherGhost.GetCoordinates())
+                {
+                    return true;
+                }
+            }
+
+            if (ghost.GetCoordinates() == PlayerCharacter.GetCoordinates())
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public Vector3 MapCoordinatesToWorldSpace(Vector2 Coordinates)
@@ -160,14 +191,14 @@ public class Map : EnhancedMonoBehaviour
         }
     }
     
-    public void CharacterOnBlock(Vector2 Coords)
+    public void CharacterOnBlock(Character _character)
     {
-        NewActiveBlockCoords.Add(Coords);
+        NewActiveBlockCoords.Add(_character);
     }
     
-    public void CharacterLeaveBlock(Vector2 Coords)
+    public void CharacterLeaveBlock(Character _character)
     {
-        NewInactiveBlockCoords.Add(Coords);
+        NewInactiveBlockCoords.Add(_character);
     }
 
     public void AddGhost(Character NewGhost)
@@ -184,5 +215,10 @@ public class Map : EnhancedMonoBehaviour
         {
             ghost.ReadNextOrder();
         }
+    }
+
+    public void RegisterPlayer(Character Player)
+    {
+        PlayerCharacter = Player;
     }
 }

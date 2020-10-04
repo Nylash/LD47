@@ -21,7 +21,7 @@ public class InteractableObject : EnhancedMonoBehaviour
         ObjectRef = GetObjectRef();
         if (ObjectRef)
         {
-            MeshRef = ObjectRef.GetComponent<MeshRenderer>();
+            MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
             if (MeshRef.sharedMaterial != materialsIndexer.materials[InteractionLayer])
                 MeshRef.sharedMaterial = materialsIndexer.materials[InteractionLayer];                
         }

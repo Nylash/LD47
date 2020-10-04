@@ -29,6 +29,8 @@ public class Character : MonoBehaviour
 
     private Vector2 InitialCoordinates = Vector2.zero;
 
+    private bool GhostCreationRequested = false;
+
     public void InitializeFromCharacter(Character Other)
     {
         SetInitialCoordinates(Other.InitialCoordinates);
@@ -62,6 +64,12 @@ public class Character : MonoBehaviour
                 {
                     PreviousCommand.Add(Command);
                     MapReference.UpdateGhosts();
+                    if (GhostCreationRequested)
+                    {
+                        CreateNextGhost();
+                        GhostCreationRequested = false;
+                    }
+                    
                 }
             }
             
@@ -98,7 +106,7 @@ public class Character : MonoBehaviour
     {
         if (ctx.started)
         {
-            CreateNextGhost();
+            GhostCreationRequested = true;
         }
     }
     
@@ -106,7 +114,8 @@ public class Character : MonoBehaviour
     {
         if (PreviousCommand.Count >= 2)
         {
-            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
+            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
+            PreviousCommand.RemoveAt(PreviousCommand.Count - 1);    
             MapReference.AddGhost(this);
             
             PreviousCommand.Clear();

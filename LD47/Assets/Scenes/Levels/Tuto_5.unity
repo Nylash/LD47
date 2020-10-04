@@ -7303,6 +7303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 8356068056992205699, guid: 1236c0eaaf36be04b94712fa73ed0b52, type: 3}
+      propertyPath: m_ActionEvents.Array.data[5].m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8356068056992205708, guid: 1236c0eaaf36be04b94712fa73ed0b52, type: 3}
       propertyPath: Coordinates.x
       value: 4
@@ -7313,7 +7317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8356068056992205711, guid: 1236c0eaaf36be04b94712fa73ed0b52, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.93
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8356068056992205711, guid: 1236c0eaaf36be04b94712fa73ed0b52, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7321,7 +7325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8356068056992205711, guid: 1236c0eaaf36be04b94712fa73ed0b52, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.85
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 8356068056992205711, guid: 1236c0eaaf36be04b94712fa73ed0b52, type: 3}
       propertyPath: m_LocalRotation.x

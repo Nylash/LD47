@@ -161,6 +161,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 1493220270}
   - {fileID: 0}
@@ -224,6 +228,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 2048632003}
   - {fileID: 0}
@@ -285,6 +293,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -440,6 +452,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -595,6 +611,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -751,6 +771,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -1001,6 +1025,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 425917119}
   - {fileID: 0}
@@ -1159,6 +1187,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 386844060}
   - {fileID: 0}
@@ -1431,6 +1463,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 1441656080}
   - {fileID: 0}
@@ -1967,6 +2003,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 1652533976}
   - {fileID: 0}
@@ -2409,6 +2449,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -3138,6 +3182,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 775588809}
   - {fileID: 1395307592}
@@ -3202,6 +3250,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 2050773471}
   - {fileID: 0}
@@ -3739,6 +3791,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -4181,6 +4237,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -4348,7 +4408,6 @@ MonoBehaviour:
   MeshRef: {fileID: 1295086876}
   WallToConvertToDoor: 0
   PreviousDirection: 0
-  WallDefaultMaterial: {fileID: 0}
 --- !u!65 &1295086875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4734,6 +4793,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 219149780}
   - {fileID: 629697682}
@@ -5176,6 +5239,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 1319722949}
   - {fileID: 0}
@@ -5427,6 +5494,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -5487,6 +5558,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 1236118085}
@@ -5949,6 +6024,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -6104,6 +6183,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 0}
@@ -6463,7 +6546,6 @@ MonoBehaviour:
   MeshRef: {fileID: 1707401233}
   WallToConvertToDoor: 0
   PreviousDirection: 0
-  WallDefaultMaterial: {fileID: 0}
 --- !u!65 &1707401232
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6754,6 +6836,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 1355741426}
   - {fileID: 0}
@@ -6815,6 +6901,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 200053779}
   - {fileID: 0}
@@ -6876,6 +6966,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 1319565603}
   - {fileID: 0}
@@ -7318,6 +7412,10 @@ MonoBehaviour:
   WallModel: {fileID: 3621837741195535590, guid: 033ae0dd8e150c44d9a040c90ef5b1e3, type: 3}
   FullWallModel: {fileID: 3621837741195535590, guid: be0f12135ef07ee45a613f0afceec0b5, type: 3}
   FloorModel: {fileID: 8220816384215162981, guid: d0e2a3ea54f14e7449c26a5802c59968, type: 3}
+  FloorEven: {fileID: 0}
+  FloorOdd: {fileID: 0}
+  WallDefaultMaterial: {fileID: 0}
+  DoorModel: {fileID: 0}
   WallsRef:
   - {fileID: 0}
   - {fileID: 1036795345}
@@ -7437,3 +7535,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2143623576}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &3082596600330352076
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 163242497503691138, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_Name
+      value: Visual Effect
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 815294693871318799, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 174f5a4f302a04e46811cc5b592c1aff, type: 3}

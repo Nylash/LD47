@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ec3941abb7bd4b44faac5f72dc316deb
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - materialsIndexer: {fileID: 11400000, guid: 54021229a9e5c5e4ca086bb35919d564, type: 2}
+  - ObjectRef: {instanceID: 0}
+  - MeshRef: {instanceID: 0}
+  - ButtonModel: {instanceID: 0}
+  - VictoryItemModel: {fileID: 7460198894117647401, guid: c11569c710c5acf42a0d96be41b85568, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

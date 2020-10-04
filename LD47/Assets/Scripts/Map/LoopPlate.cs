@@ -9,7 +9,7 @@ public class LoopPlate : Button
 
     public override void InteractEnter(Character player)
     {
-        FindObjectOfType<Character>().GhostCreationRequested = true;
+        player.GhostCreationRequested = true;
     }
 
     public override void InteractExit(Character player)
@@ -20,6 +20,7 @@ public class LoopPlate : Button
     protected override void EditorStart()
     {
         ObjectRef = GetObjectRef();
+        InteractionLayer = -1;
     }
 
     protected override void EditorUpdate()

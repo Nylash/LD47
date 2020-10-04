@@ -57,6 +57,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""6a2d9c19-91fd-4d0f-be85-5adb55140e17"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press""
                 }
             ],
             ""bindings"": [
@@ -114,6 +122,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""CreateGhost"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99b42f7c-e8ff-47bf-8672-1432c0defae0"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""906b8dbe-9366-4de1-ac28-d7a545e2ba61"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -122,18 +152,18 @@ public class @InputActions : IInputActionCollection, IDisposable
             ""id"": ""b9e5eac9-7a82-4651-b8c8-2c2d485335df"",
             ""actions"": [
                 {
-                    ""name"": ""Cancel"",
+                    ""name"": ""Accept"",
                     ""type"": ""Button"",
-                    ""id"": ""10ba85f8-76fc-4c76-828c-f0b1c7eaee56"",
+                    ""id"": ""e64252cb-9e52-4966-b027-99bb97f2899b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Accept"",
-                    ""type"": ""Button"",
-                    ""id"": ""e64252cb-9e52-4966-b027-99bb97f2899b"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""Navigation"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""0873c911-0fee-4794-a232-f405fb01b7b4"",
+                    ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
                 }
@@ -141,36 +171,135 @@ public class @InputActions : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""f43a0445-6c96-41fe-bf18-fc1967d4933e"",
-                    ""path"": ""*/{Cancel}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""641295c9-6a20-4162-b57d-4929a146f763"",
-                    ""path"": ""*/{Back}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Cancel"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""c94a1242-8712-41ca-9b36-0a9be81d533a"",
-                    ""path"": ""*/{Submit}"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Accept"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""21f5d3da-cbc4-4272-844d-3170d5454b7e"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Accept"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""94de3b91-cde7-4431-a428-c94845c90151"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""c856c3bd-8390-4335-a7f4-bf3793f80106"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""779ab4f8-ae99-46ed-96ea-94a6fc2d2c3d"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c1285b1e-2ed0-47cc-ac97-32cce7d10d8c"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""92c8c829-e9e5-4cad-bbf3-963fd11c0f0d"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""WASD"",
+                    ""id"": ""a445c018-03ff-4645-96c9-bdd729e4d72b"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""76e19c5d-4362-4eff-ab4a-6579a11d5a9b"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""1fe84563-0553-4a02-8121-a195dd55cbf0"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""8d933c91-7a27-48f5-832e-d807a04f93e1"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""2def8bcb-f9a8-450e-af0d-59ebd629b3a3"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Navigation"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -201,10 +330,11 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_MoveLeft = m_Player.FindAction("MoveLeft", throwIfNotFound: true);
         m_Player_MoveRight = m_Player.FindAction("MoveRight", throwIfNotFound: true);
         m_Player_CreateGhost = m_Player.FindAction("CreateGhost", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
-        m_UI_Cancel = m_UI.FindAction("Cancel", throwIfNotFound: true);
         m_UI_Accept = m_UI.FindAction("Accept", throwIfNotFound: true);
+        m_UI_Navigation = m_UI.FindAction("Navigation", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -259,6 +389,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MoveLeft;
     private readonly InputAction m_Player_MoveRight;
     private readonly InputAction m_Player_CreateGhost;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -268,6 +399,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MoveLeft => m_Wrapper.m_Player_MoveLeft;
         public InputAction @MoveRight => m_Wrapper.m_Player_MoveRight;
         public InputAction @CreateGhost => m_Wrapper.m_Player_CreateGhost;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -292,6 +424,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @CreateGhost.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCreateGhost;
                 @CreateGhost.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCreateGhost;
                 @CreateGhost.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnCreateGhost;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -311,6 +446,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @CreateGhost.started += instance.OnCreateGhost;
                 @CreateGhost.performed += instance.OnCreateGhost;
                 @CreateGhost.canceled += instance.OnCreateGhost;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -319,14 +457,14 @@ public class @InputActions : IInputActionCollection, IDisposable
     // UI
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
-    private readonly InputAction m_UI_Cancel;
     private readonly InputAction m_UI_Accept;
+    private readonly InputAction m_UI_Navigation;
     public struct UIActions
     {
         private @InputActions m_Wrapper;
         public UIActions(@InputActions wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Cancel => m_Wrapper.m_UI_Cancel;
         public InputAction @Accept => m_Wrapper.m_UI_Accept;
+        public InputAction @Navigation => m_Wrapper.m_UI_Navigation;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -336,22 +474,22 @@ public class @InputActions : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_UIActionsCallbackInterface != null)
             {
-                @Cancel.started -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
-                @Cancel.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
-                @Cancel.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnCancel;
                 @Accept.started -= m_Wrapper.m_UIActionsCallbackInterface.OnAccept;
                 @Accept.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnAccept;
                 @Accept.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnAccept;
+                @Navigation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigation;
+                @Navigation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigation;
+                @Navigation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigation;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Cancel.started += instance.OnCancel;
-                @Cancel.performed += instance.OnCancel;
-                @Cancel.canceled += instance.OnCancel;
                 @Accept.started += instance.OnAccept;
                 @Accept.performed += instance.OnAccept;
                 @Accept.canceled += instance.OnAccept;
+                @Navigation.started += instance.OnNavigation;
+                @Navigation.performed += instance.OnNavigation;
+                @Navigation.canceled += instance.OnNavigation;
             }
         }
     }
@@ -372,10 +510,11 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMoveLeft(InputAction.CallbackContext context);
         void OnMoveRight(InputAction.CallbackContext context);
         void OnCreateGhost(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
-        void OnCancel(InputAction.CallbackContext context);
         void OnAccept(InputAction.CallbackContext context);
+        void OnNavigation(InputAction.CallbackContext context);
     }
 }

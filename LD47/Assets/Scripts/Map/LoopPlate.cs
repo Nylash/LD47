@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LoopPlate : Button
+public class LoopPlate : ButtonGameplay
 {
     [HideInInspector]
     [SerializeField] private GameObject LoopPlateModel = null;

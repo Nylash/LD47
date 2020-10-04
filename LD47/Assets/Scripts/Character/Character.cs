@@ -128,32 +128,32 @@ public class Character : MonoBehaviour
 
     public void AskMoveUp(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked)
             Command = MovementCommand.Up;
     }
     
     public void AskMoveDown(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked)
             Command = MovementCommand.Down;
     }
     
     public void AskMoveLeft(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked)
             Command = MovementCommand.Left;   
 
     }
     
     public void AskMoveRight(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked)
             Command = MovementCommand.Right;
     }
 
     public void AskCreateNextGhost(InputAction.CallbackContext ctx)
     {
-        if (ctx.started)
+        if (ctx.started && !UI_Manager.instance.bLevelPaused)
         {
             GhostCreationRequested = true;
         }
@@ -242,5 +242,11 @@ public class Character : MonoBehaviour
     private void GameOver()
     {
         LoopLocked = true;
+    }
+
+    public void AskPause(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+            UI_Manager.instance.Pause();
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 
 [ExecuteInEditMode]
-public class Button : InteractableObject
+public class ButtonGameplay : InteractableObject
 {
     [HideInInspector]
     public List<InteractableObject> relatedObjects = new List<InteractableObject>();

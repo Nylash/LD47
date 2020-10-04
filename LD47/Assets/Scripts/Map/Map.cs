@@ -29,7 +29,7 @@ public class Map : EnhancedMonoBehaviour
 
     protected override void GameStart()
     {
-        
+        OnGameOver += UI_Manager.instance.Defeat;
     }
     
     protected override void EditorUpdate()

@@ -11,6 +11,7 @@ public class UI_Manager : MonoBehaviour
 
     public Canvas pauseCanvas = null;
     public Canvas victoryCanvas = null;
+    public Canvas defeatCanvas = null;
 
     public bool bLevelPaused = false;
 
@@ -40,6 +41,12 @@ public class UI_Manager : MonoBehaviour
     {
         bLevelPaused = true;
         victoryCanvas.enabled = true;
+    }
+
+    public void Defeat()
+    {
+        bLevelPaused = true;
+        defeatCanvas.enabled = true;
     }
 
     public void AskItemVictory()

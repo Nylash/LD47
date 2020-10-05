@@ -223,6 +223,7 @@ public class Character : MonoBehaviour
     {
         if (ctx.started && !UI_Manager.instance.bLevelPaused)
         {
+            SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.rewindTime, audioSource);
             MapReference.StartRewind();
         }
 
@@ -270,7 +271,7 @@ public class Character : MonoBehaviour
         IsMoving = true;
         
         MapReference.CharacterOnBlock(this);
-        if (IsPlayer())
+        if (IsPlayer() && !IsRewinding)
             SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.wooshDeplacement, audioSource);
     }
 

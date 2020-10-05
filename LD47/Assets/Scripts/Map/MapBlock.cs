@@ -26,6 +26,8 @@ public class MapBlock : EnhancedMonoBehaviour
     [SerializeField] private Material FloorOdd = null;
     [SerializeField] public Material WallDefaultMaterial = null;
     [SerializeField] public Mesh DoorModel = null;
+    [SerializeField] public GameObject FrameModel = null;
+    [SerializeField] public GameObject ButtonModel = null;
 
     [SerializeField]
     [HideInInspector]

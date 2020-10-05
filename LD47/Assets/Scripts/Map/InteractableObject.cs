@@ -18,13 +18,7 @@ public class InteractableObject : EnhancedMonoBehaviour
     
     protected override void EditorStart()
     {
-        ObjectRef = GetObjectRef();
-        if (ObjectRef)
-        {
-            MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
-            if (MeshRef.sharedMaterial != materialsIndexer.materials[InteractionLayer])
-                MeshRef.sharedMaterial = materialsIndexer.materials[InteractionLayer];                
-        }
+
     }
 
     public virtual void InteractEnter(Character player)
@@ -39,11 +33,7 @@ public class InteractableObject : EnhancedMonoBehaviour
 
     protected override void EditorUpdate()
     {
-        if (ObjectRef)
-        {
-            if (MeshRef.sharedMaterial != materialsIndexer.materials[InteractionLayer])
-                MeshRef.sharedMaterial = materialsIndexer.materials[InteractionLayer];                
-        }
+
     }
 
     protected virtual GameObject GetObjectRef()

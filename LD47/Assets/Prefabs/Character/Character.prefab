@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d66d1841e2938c4fb965bedc0346f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MinMaxHeight: {x: 0.25, y: 0.75}
+  MinMaxHeight: {x: 0.15, y: 0.4}
   HoverLoopDuration: 2
   HeightCurve:
     serializedVersion: 2

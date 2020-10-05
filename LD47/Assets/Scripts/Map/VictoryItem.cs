@@ -22,7 +22,7 @@ public class VictoryItem : ButtonGameplay
     protected override void GameStart()
     {
         base.GameStart();
-        GetObjectRef().GetComponent<Animator>().speed = Random.Range(.5f, .8f);
+        GetObjectRef().GetComponent<Animator>().speed = Random.Range(.6f, .8f);
     }
 
     protected override void EditorStart()

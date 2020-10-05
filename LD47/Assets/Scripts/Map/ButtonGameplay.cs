@@ -8,8 +8,18 @@ public class ButtonGameplay : InteractableObject
 {
     [HideInInspector]
     public List<InteractableObject> relatedObjects = new List<InteractableObject>();
-    [HideInInspector]
-    [SerializeField] private GameObject ButtonModel = null;
+
+    protected override void EditorStart()
+    {
+        ObjectRef = GetObjectRef();
+        MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
+        LanternMaterialHandler();
+    }
+
+    protected override void EditorUpdate()
+    {
+        LanternMaterialHandler();
+    }
 
     public override void InteractEnter(Character player)
     {
@@ -31,11 +41,24 @@ public class ButtonGameplay : InteractableObject
     {
         if (!ObjectRef)
         {
-            return Instantiate(ButtonModel, transform);
+            return Instantiate(GetOwner().ButtonModel, transform);
         }
         else
         {
             return ObjectRef;
+        }
+    }
+
+    void LanternMaterialHandler()
+    {
+        if(MeshRef.transform.childCount > 0)
+        {
+            if (MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1] != materialsIndexer.materials[InteractionLayer])
+            {
+                Material[] mat = MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
+                mat[1] = materialsIndexer.materials[InteractionLayer];
+                MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mat;
+            }
         }
     }
 }

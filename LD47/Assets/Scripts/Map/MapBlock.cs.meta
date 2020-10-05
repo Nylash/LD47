@@ -11,6 +11,8 @@ MonoImporter:
   - FloorOdd: {fileID: 2100000, guid: 57d7c41a45989fa40852644b03c2a756, type: 2}
   - WallDefaultMaterial: {fileID: 2100000, guid: 9dadd83d14803b04fa7522fb1d1a3d5d, type: 2}
   - DoorModel: {fileID: -4259655174383198485, guid: 39265949f7e880149a2e4ab61d000d1d, type: 3}
+  - FrameModel: {fileID: 4078654327171411778, guid: 4836bd6c21ad72b48b12dc527f37b7c5, type: 3}
+  - ButtonModel: {fileID: 2516294763466721305, guid: 2390dafc530fc164ab37191969ec971b, type: 3}
   - FloorRef: {instanceID: 0}
   - FullWallRef: {instanceID: 0}
   executionOrder: 0

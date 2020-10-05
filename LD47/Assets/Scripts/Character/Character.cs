@@ -213,7 +213,7 @@ public class Character : MonoBehaviour
 
     public void AskCreateNextGhost(InputAction.CallbackContext ctx)
     {
-        if (ctx.started && !UI_Manager.instance.bLevelPaused)
+        if (ctx.started && !UI_Manager.instance.bLevelPaused && !GhostCreationRequested)
         {
             GhostCreationRequested = true;
         }

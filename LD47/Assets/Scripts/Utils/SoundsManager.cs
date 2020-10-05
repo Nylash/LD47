@@ -73,7 +73,7 @@ public class SoundsManager : MonoBehaviour
 
     public enum SoundName
     {
-        TO_DEFINE, iddle, wooshDeplacement, ouafDeMort, rewindTime, ghostPop, door, pickUpBones, victory
+        TO_DEFINE, waaaaf, wooshDeplacement, ouafDeMort, rewindTime, ghostPop, door, pickUpBones, victory
     }
 
     void DebugSound()

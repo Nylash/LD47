@@ -306,72 +306,36 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1327278025608342688, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: m_RenderMode
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342688, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
       propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 4574802927933017270, guid: 38f5de404e2a0e14db6f0aeca3b56520, type: 3}
+      objectReference: {fileID: -7230719180791286184, guid: a0179808e859ca74bb1e29cfbbdcfeaa, type: 3}
     - target: {fileID: 1327278025608342688, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 2eb2653bf90c7e4449b917f27a095fae, type: 2}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: ShapeModule.m_Scale.z
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: SizeModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: ba0f7f6ad549da74884f9e6cb0a23582, type: 2}
     - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
       propertyPath: InitialModule.startSize.minScalar
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: RotationModule.enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: RotationModule.separateAxes
-      value: 1
+      propertyPath: InitialModule.startSize.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: RotationModule.x.scalar
-      value: 0.7853981
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: RotationModule.y.scalar
-      value: 0.7853981
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: RotationModule.curve.scalar
-      value: 0.7853981
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: lengthInSec
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: InitialModule.startLifetime.scalar
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: NoiseModule.strength.scalar
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1327278025608342689, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
-      propertyPath: NoiseModule.frequency
-      value: 0.1
+      propertyPath: ShapeModule.alignToDirection
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1327278025608342690, guid: ea2a4c56af4e32440882e5c8349bb084, type: 3}
       propertyPath: m_LocalPosition.x

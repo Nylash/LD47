@@ -9,6 +9,8 @@ public class ButtonGameplay : InteractableObject
     [HideInInspector]
     public List<InteractableObject> relatedObjects = new List<InteractableObject>();
 
+    private AudioSource audioSource;
+
     protected override void EditorStart()
     {
         ObjectRef = GetObjectRef();
@@ -24,8 +26,14 @@ public class ButtonGameplay : InteractableObject
             LanternMaterialHandler();
     }
 
+    protected override void GameStart()
+    {
+        audioSource = ObjectRef.GetComponent<AudioSource>();
+    }
+
     public override void InteractEnter(Character player)
     {
+        SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.door, audioSource);
         foreach (InteractableObject item in relatedObjects)
         {
             item.InteractEnter(player);

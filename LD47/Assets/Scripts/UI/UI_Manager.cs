@@ -18,6 +18,8 @@ public class UI_Manager : MonoBehaviour
     public VictoryItem[] victoryItems = null;
     public int itemsToPickUp = 0;
 
+    private AudioSource audioSource;
+
     private void Awake()
     {
         if (instance == null)
@@ -27,6 +29,7 @@ public class UI_Manager : MonoBehaviour
 
         victoryItems = FindObjectsOfType<VictoryItem>();
         itemsToPickUp = victoryItems.Length;
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Pause()
@@ -39,12 +42,14 @@ public class UI_Manager : MonoBehaviour
 
     public void Victory()
     {
+        SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.victory, audioSource);
         bLevelPaused = true;
         victoryCanvas.enabled = true;
     }
 
     public void Defeat()
     {
+        SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.ouafDeMort, audioSource);
         bLevelPaused = true;
         defeatCanvas.enabled = true;
     }
@@ -53,7 +58,11 @@ public class UI_Manager : MonoBehaviour
     {
         itemsToPickUp--;
         if (itemsToPickUp == 0)
+        {
             Victory();
+            return;
+        }
+        SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.pickUpBones, audioSource);
     }
 
     public void Replay()

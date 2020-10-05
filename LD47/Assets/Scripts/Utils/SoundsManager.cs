@@ -40,7 +40,7 @@ public class SoundsManager : MonoBehaviour
         int index = GetIndex(soundName);
         if (index == sounds.Count)
         {
-            Debug.LogError("There is no sound with this name " + soundName + " on SoundsManger, please verify your typing.");
+            Debug.LogWarning("There is no sound with this name " + soundName + " on SoundsManger, please verify your typing.");
             return;
         }
         source.pitch = sounds[index].pitchs[Random.Range(0, sounds[index].pitchs.Count)];
@@ -54,7 +54,7 @@ public class SoundsManager : MonoBehaviour
         int index = GetIndex(soundName);
         if (index == sounds.Count)
         {
-            Debug.LogError("There is no sound with this name " + soundName + " on SoundsManger, please verify your typing.");
+            Debug.LogWarning("There is no sound with this name " + soundName + " on SoundsManger, please verify your typing.");
             return;
         }
         source.pitch = sounds[index].pitchs[Random.Range(0, sounds[index].pitchs.Count)];

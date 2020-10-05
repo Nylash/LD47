@@ -13,7 +13,7 @@ public class SoundsManager : MonoBehaviour
         public SoundName name;
         public List<AudioClip> clips = new List<AudioClip>();
         [Range(0, 1)] public float volume = 1;
-        [Range(-3, 3)] public float pitch = 1;
+        [Range(-3, 3)] public List<float> pitchs = new List<float>();
     }
 
     [ArrayElementTitle("name")]
@@ -43,7 +43,7 @@ public class SoundsManager : MonoBehaviour
             Debug.LogError("There is no sound with this name " + soundName + " on SoundsManger, please verify your typing.");
             return;
         }
-        source.pitch = sounds[index].pitch;
+        source.pitch = sounds[index].pitchs[Random.Range(0, sounds[index].pitchs.Count)];
         source.volume = sounds[index].volume;
         source.clip = sounds[index].clips[Random.Range(0, sounds[index].clips.Count)];
         source.loop = true;
@@ -57,7 +57,7 @@ public class SoundsManager : MonoBehaviour
             Debug.LogError("There is no sound with this name " + soundName + " on SoundsManger, please verify your typing.");
             return;
         }
-        source.pitch = sounds[index].pitch;
+        source.pitch = sounds[index].pitchs[Random.Range(0, sounds[index].pitchs.Count)];
         source.PlayOneShot(sounds[index].clips[Random.Range(0, sounds[index].clips.Count)], sounds[index].volume);
     }
 

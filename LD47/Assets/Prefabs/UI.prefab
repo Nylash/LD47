@@ -602,11 +602,11 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_ActionsAsset: {fileID: -944628639613478452, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
-  m_PointAction: {fileID: 0}
+  m_PointAction: {fileID: 4081777725963025566, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_MoveAction: {fileID: -2516202981334062544, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_SubmitAction: {fileID: 3609820601416550413, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}
@@ -3526,7 +3526,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: One of your ghost or yourself crossed the path of another ghost.
+  m_text: You or one of your ghost has stopped on the same block of an another ghost.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

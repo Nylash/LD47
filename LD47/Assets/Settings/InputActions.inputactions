@@ -191,6 +191,22 @@
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "MouseCursor",
+                    "type": "PassThrough",
+                    "id": "9c7f5026-b429-4ae8-88d8-06979fcbade3",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "24a720e8-a818-41e7-baed-e741442f767e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -336,6 +352,28 @@
                     "action": "Navigation",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "364209b2-dd56-4c32-aa7e-52537b327962",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControlScheme",
+                    "action": "MouseCursor",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "558fe89b-5b1e-4fab-9a99-f46feb277612",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "ControlScheme",
+                    "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

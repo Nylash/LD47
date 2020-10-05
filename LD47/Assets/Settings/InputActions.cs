@@ -204,6 +204,22 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseCursor"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""9c7f5026-b429-4ae8-88d8-06979fcbade3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""24a720e8-a818-41e7-baed-e741442f767e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -349,6 +365,28 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""action"": ""Navigation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""364209b2-dd56-4c32-aa7e-52537b327962"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""MouseCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""558fe89b-5b1e-4fab-9a99-f46feb277612"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""ControlScheme"",
+                    ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -386,6 +424,8 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Accept = m_UI.FindAction("Accept", throwIfNotFound: true);
         m_UI_Navigation = m_UI.FindAction("Navigation", throwIfNotFound: true);
+        m_UI_MouseCursor = m_UI.FindAction("MouseCursor", throwIfNotFound: true);
+        m_UI_Click = m_UI.FindAction("Click", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -526,12 +566,16 @@ public class @InputActions : IInputActionCollection, IDisposable
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Accept;
     private readonly InputAction m_UI_Navigation;
+    private readonly InputAction m_UI_MouseCursor;
+    private readonly InputAction m_UI_Click;
     public struct UIActions
     {
         private @InputActions m_Wrapper;
         public UIActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Accept => m_Wrapper.m_UI_Accept;
         public InputAction @Navigation => m_Wrapper.m_UI_Navigation;
+        public InputAction @MouseCursor => m_Wrapper.m_UI_MouseCursor;
+        public InputAction @Click => m_Wrapper.m_UI_Click;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -547,6 +591,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Navigation.started -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigation;
                 @Navigation.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigation;
                 @Navigation.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnNavigation;
+                @MouseCursor.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMouseCursor;
+                @MouseCursor.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMouseCursor;
+                @MouseCursor.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMouseCursor;
+                @Click.started -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
+                @Click.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
+                @Click.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnClick;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -557,6 +607,12 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Navigation.started += instance.OnNavigation;
                 @Navigation.performed += instance.OnNavigation;
                 @Navigation.canceled += instance.OnNavigation;
+                @MouseCursor.started += instance.OnMouseCursor;
+                @MouseCursor.performed += instance.OnMouseCursor;
+                @MouseCursor.canceled += instance.OnMouseCursor;
+                @Click.started += instance.OnClick;
+                @Click.performed += instance.OnClick;
+                @Click.canceled += instance.OnClick;
             }
         }
     }
@@ -585,5 +641,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     {
         void OnAccept(InputAction.CallbackContext context);
         void OnNavigation(InputAction.CallbackContext context);
+        void OnMouseCursor(InputAction.CallbackContext context);
+        void OnClick(InputAction.CallbackContext context);
     }
 }

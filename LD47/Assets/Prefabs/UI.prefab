@@ -1754,7 +1754,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 3963011103c37d7408a758d238316d17, type: 3}
     volume: 0.2
     pitchs:
+    - 0.95
     - 1
+    - 1.1
 --- !u!82 &2367275820214035146
 AudioSource:
   m_ObjectHideFlags: 0

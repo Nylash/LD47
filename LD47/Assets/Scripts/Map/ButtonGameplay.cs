@@ -18,6 +18,7 @@ public class ButtonGameplay : InteractableObject
             MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
         if(MeshRef)
             LanternMaterialHandler();
+        MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsDefault[InteractionLayer]);
     }
 
     protected override void EditorUpdate()
@@ -29,11 +30,13 @@ public class ButtonGameplay : InteractableObject
     protected override void GameStart()
     {
         audioSource = ObjectRef.GetComponent<AudioSource>();
+        MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsDefault[InteractionLayer]);
     }
 
     public override void InteractEnter(Character player)
     {
         SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.door, audioSource);
+        MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsActive[InteractionLayer]);
         foreach (InteractableObject item in relatedObjects)
         {
             item.InteractEnter(player);
@@ -43,6 +46,7 @@ public class ButtonGameplay : InteractableObject
     public override void InteractExit(Character player)
     {
         SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.door, audioSource);
+        MeshRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsDefault[InteractionLayer]);
         foreach (InteractableObject item in relatedObjects)
         {
             item.InteractExit(player);

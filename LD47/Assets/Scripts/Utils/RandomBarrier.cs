@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RandomBarrier : MonoBehaviour
+public class RandomBarrier : EnhancedMonoBehaviour
 {
     [SerializeField] private List<Mesh> barriers = new List<Mesh>();
 
-    private void Start()
+    protected override void GameStart()
     {
         if(tag != "Door")
+            GetComponent<MeshFilter>().mesh = barriers[Random.Range(0, barriers.Count)];
+    }
+
+    protected override void EditorStart()
+    {
+        if (tag != "Door")
             GetComponent<MeshFilter>().mesh = barriers[Random.Range(0, barriers.Count)];
     }
 }

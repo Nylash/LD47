@@ -12,13 +12,16 @@ public class ButtonGameplay : InteractableObject
     protected override void EditorStart()
     {
         ObjectRef = GetObjectRef();
-        MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
-        LanternMaterialHandler();
+        if (ObjectRef)
+            MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
+        if(MeshRef)
+            LanternMaterialHandler();
     }
 
     protected override void EditorUpdate()
     {
-        LanternMaterialHandler();
+        if (MeshRef)
+            LanternMaterialHandler();
     }
 
     public override void InteractEnter(Character player)

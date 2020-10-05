@@ -12,15 +12,19 @@ public class Door : InteractableObject
     protected override void EditorStart()
     {
         ObjectRef = GetObjectRef();
-        MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
+        if(ObjectRef)
+            MeshRef = ObjectRef.GetComponentInChildren<MeshRenderer>();
 
         PreviousDirection = WallToConvertToDoor;
 
-        MeshRef.gameObject.tag = "Door";
-        MeshRef.GetComponent<MeshFilter>().mesh = GetOwner().DoorModel;
+        if (MeshRef)
+        {
+            MeshRef.gameObject.tag = "Door";
+            MeshRef.GetComponent<MeshFilter>().mesh = GetOwner().DoorModel;
 
-        SpawnFrames();
-        LanternMaterialHandler();
+            SpawnFrames();
+            LanternMaterialHandler();
+        }
     }
 
     public override void InteractEnter(Character player)
@@ -82,22 +86,25 @@ public class Door : InteractableObject
 
     void LanternMaterialHandler()
     {
-        if (frameLeftRef.transform.childCount > 0)
+        if(frameLeftRef && frameRightRef)
         {
-            if (frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1] != materialsIndexer.materials[InteractionLayer])
+            if (frameLeftRef.transform.childCount > 0)
             {
-                Material[] mat = frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
-                mat[1] = materialsIndexer.materials[InteractionLayer];
-                frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mat;
+                if (frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1] != materialsIndexer.materials[InteractionLayer])
+                {
+                    Material[] mat = frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
+                    mat[1] = materialsIndexer.materials[InteractionLayer];
+                    frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mat;
+                }
             }
-        }
-        if (frameRightRef.transform.childCount > 0)
-        {
-            if (frameRightRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1] != materialsIndexer.materials[InteractionLayer])
+            if (frameRightRef.transform.childCount > 0)
             {
-                Material[] mat = frameRightRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
-                mat[1] = materialsIndexer.materials[InteractionLayer];
-                frameRightRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mat;
+                if (frameRightRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1] != materialsIndexer.materials[InteractionLayer])
+                {
+                    Material[] mat = frameRightRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials;
+                    mat[1] = materialsIndexer.materials[InteractionLayer];
+                    frameRightRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials = mat;
+                }
             }
         }
     }

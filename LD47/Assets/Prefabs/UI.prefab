@@ -1757,6 +1757,14 @@ MonoBehaviour:
     - 0.95
     - 1
     - 1.1
+  - name: 1
+    clips:
+    - {fileID: 8300000, guid: c1ec4db7f89e4c044a42683eae56f70d, type: 3}
+    volume: 1
+    pitchs:
+    - 0.95
+    - 1
+    - 1.1
 --- !u!82 &2367275820214035146
 AudioSource:
   m_ObjectHideFlags: 0

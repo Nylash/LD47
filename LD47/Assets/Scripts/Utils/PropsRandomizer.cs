@@ -15,7 +15,7 @@ public class PropsRandomizer : EnhancedMonoBehaviour
     {
         foreach (GameObject item in assetsRef)
             DestroyImmediate(item);
-        if (!GetComponentInParent<VictoryButton>())
+        if (!GetComponentInParent<VictoryButton>() && !GetComponentInParent<LoopPlate>())
         {
             for (float x = -.4f; x < .45f; x += .2f)
             {

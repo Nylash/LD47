@@ -55,6 +55,12 @@ public class UI_Manager : MonoBehaviour
         defeatCanvas.enabled = true;
     }
 
+    public void HideCanvas(Canvas canvas)
+    {
+        bLevelPaused = false;
+        canvas.enabled = false;
+    }
+
     public void AskItemVictory()
     {
         itemsToPickUp--;

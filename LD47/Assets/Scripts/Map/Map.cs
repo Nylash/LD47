@@ -39,6 +39,11 @@ public class Map : EnhancedMonoBehaviour
             return;
         
         IsRewinding = true;
+        PlayerCharacter.IsRewinding = true;
+        foreach(Character ghost in Ghosts)
+        {
+            ghost.IsRewinding = true;
+        }
     }
 
     public void StopRewind()
@@ -47,6 +52,12 @@ public class Map : EnhancedMonoBehaviour
             return;
         
         IsRewinding = false;
+        
+        PlayerCharacter.IsRewinding = false;
+        foreach(Character ghost in Ghosts)
+        {
+            ghost.IsRewinding = false;
+        }
     }
 
     protected override void GameStart()

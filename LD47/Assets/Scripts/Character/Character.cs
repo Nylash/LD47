@@ -61,10 +61,12 @@ public class Character : MonoBehaviour
 
     private GhostPath GhostPath = null;
 
+    public bool IsRewinding = false;
+
     public void InitializeFromCharacter(Character Other, bool StayInPlace = false)
     {
         SetInitialCoordinates(Other.InitialCoordinates);
-        if (!MapReference.IsRewinding)
+        if (!IsRewinding)
         {
             //CoordinatesList.Add(InitialCoordinates);
         }
@@ -130,7 +132,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            if (IsPlayer() && !MapReference.IsRewinding)
+            if (IsPlayer() && !IsRewinding)
             {
                 if (Command != MovementCommand.None)
                 {
@@ -146,7 +148,7 @@ public class Character : MonoBehaviour
                 }
             }
 
-            if (MapReference.IsRewinding)
+            if (IsRewinding)
             {
                 MapReference.RewindUpdate();
             }
@@ -188,26 +190,26 @@ public class Character : MonoBehaviour
 
     public void AskMoveUp(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked && !MapReference.IsRewinding)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Up;
     }
     
     public void AskMoveDown(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked && !MapReference.IsRewinding)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Down;
     }
     
     public void AskMoveLeft(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked && !MapReference.IsRewinding)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Left;   
 
     }
     
     public void AskMoveRight(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked && !MapReference.IsRewinding)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Right;
     }
 
@@ -261,7 +263,7 @@ public class Character : MonoBehaviour
         PreviousCoordinates = Coordinates;
         Coordinates = newCoordinates;
         
-        if (!MapReference.IsRewinding)
+        if (!IsRewinding)
         {
             CoordinatesList.Add(PreviousCoordinates);
         }
@@ -272,7 +274,7 @@ public class Character : MonoBehaviour
         IsMoving = true;
         
         MapReference.CharacterOnBlock(this);
-        if (IsPlayer() && !MapReference.IsRewinding)
+        if (IsPlayer() && !IsRewinding)
             SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.wooshDeplacement, audioSource);
     }
 
@@ -284,7 +286,7 @@ public class Character : MonoBehaviour
         
         Coordinates = newCoordinates;
         
-        if (!MapReference.IsRewinding)
+        if (!IsRewinding)
         {
             CoordinatesList.Add(PreviousCoordinates);
         }

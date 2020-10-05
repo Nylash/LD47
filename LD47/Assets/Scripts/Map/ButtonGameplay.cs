@@ -42,6 +42,7 @@ public class ButtonGameplay : InteractableObject
 
     public override void InteractExit(Character player)
     {
+        SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.door, audioSource);
         foreach (InteractableObject item in relatedObjects)
         {
             item.InteractExit(player);

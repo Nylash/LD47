@@ -9,7 +9,6 @@ public class MusicLoop : MonoBehaviour
     private AudioSource audioSource;
     [SerializeField] private AudioClip StartMusic = null;
     [SerializeField] private AudioClip LoopMusic = null;
-    private bool loopIsPlaying = false;
 
     private void Awake()
     {
@@ -22,18 +21,14 @@ public class MusicLoop : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(StartMusic);
+        StartCoroutine(PlayLoop());
     }
 
-    private void Update()
+    IEnumerator PlayLoop()
     {
-        if (!loopIsPlaying)
-        {
-            if (!audioSource.isPlaying)
-            {
-                audioSource.clip = LoopMusic;
-                audioSource.loop = true;
-                loopIsPlaying = true;
-            }
-        }
+        yield return new WaitForSeconds(StartMusic.length -1f);
+        audioSource.clip = LoopMusic;
+        audioSource.loop = true;
+        audioSource.Play();
     }
 }

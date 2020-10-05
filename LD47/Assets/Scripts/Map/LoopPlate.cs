@@ -12,6 +12,11 @@ public class LoopPlate : ButtonGameplay
         player.GhostCreationRequested = true;
     }
 
+    protected override void GameStart()
+    {
+        
+    }
+
     public override void InteractExit(Character player)
     {
         return;

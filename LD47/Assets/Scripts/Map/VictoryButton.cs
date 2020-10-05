@@ -12,6 +12,11 @@ public class VictoryButton : ButtonGameplay
         UI_Manager.instance.Victory();
     }
 
+    protected override void GameStart()
+    {
+
+    }
+
     public override void InteractExit(Character player)
     {
         return;

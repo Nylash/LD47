@@ -32,7 +32,7 @@ public class SoundsManager : MonoBehaviour
 
         actionsMap = new InputActions();
 
-        actionsMap.Player.Debug.performed += ctx => DebugSound();
+        actionsMap.Player.Debug.started += ctx => DebugSound();
     }
 
     public void PlaySoundLoop(SoundName soundName, AudioSource source)

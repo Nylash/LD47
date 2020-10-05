@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9077582969706836322}
   - component: {fileID: 7777981696257371191}
   - component: {fileID: 527565548480148091}
+  - component: {fileID: 2211634540559899692}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -81,3 +82,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &2211634540559899692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8220816384215162981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a677bf73e0eb0c47b237188e1b483fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grassAssets:
+  - {fileID: 5719391301479362392, guid: 447de3e89863fed49990b03f1aff3dd5, type: 3}
+  - {fileID: 2238657171660535005, guid: 7884eeb5952e2f64397075062fd29cf9, type: 3}
+  - {fileID: 6894339662467024988, guid: b4c136411fa9f8241a64811c7c6446d8, type: 3}
+  - {fileID: 6945659519053085888, guid: 26ca87da634aa9d4b9f7878c3545955d, type: 3}
+  - {fileID: 8833541645328211629, guid: efdac43bd8dece4468a2c2843f76884e, type: 3}
+  - {fileID: 6260927012846960038, guid: a72b5ffce11f50946a46c36b0a16dc36, type: 3}
+  leafAssets:
+  - {fileID: 4176455734126207084, guid: 2a6e148ddfd836449bf0d9905274c0b5, type: 3}
+  - {fileID: 5085699471851937951, guid: bd9d2da73cf4be140a78dc34c3dd38c4, type: 3}
+  - {fileID: 1863024624438543421, guid: 940d512c2f85d8c46801062ae730f871, type: 3}
+  - {fileID: 3274915991511404236, guid: a84a9f0d9968e5b4fb3ab45f9557f5c9, type: 3}
+  - {fileID: 5418911676454329402, guid: 6d961f203022c8648be90749ca0c82d0, type: 3}
+  - {fileID: 2437674210967557942, guid: 8ab2026af7419af498f395c36e49f095, type: 3}

@@ -101,6 +101,7 @@ public class Character : MonoBehaviour
             GhostPath = go.GetComponent<GhostPath>();
             GhostPath.SetInitialPoint(InitialCoordinates);
             GhostPath.SetColor(Color);
+            GetComponentInChildren<SkinnedMeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }
     }
 

@@ -66,7 +66,7 @@ public class Character : MonoBehaviour
         SetInitialCoordinates(Other.InitialCoordinates);
         if (!IsRewinding)
         {
-            CoordinatesList.Add(InitialCoordinates);
+            //CoordinatesList.Add(InitialCoordinates);
         }
         MapReference = Other.MapReference;
         if (!StayInPlace)
@@ -79,12 +79,12 @@ public class Character : MonoBehaviour
         }
         else
         {
-            PreviousCommand.Add(MovementCommand.None);
+            //PreviousCommand.Add(MovementCommand.None);
         }
         PreviousCommand.AddRange(Other.PreviousCommand);
         if (GhostPath)
         {
-            Destroy(GhostPath);
+            Destroy(GhostPath.gameObject);
         }
         GhostPath = Other.GhostPath;
         GhostPath.SetColor(Color);
@@ -95,7 +95,7 @@ public class Character : MonoBehaviour
         if (IsPlayer())
         {
             SetInitialCoordinates(Coordinates);
-            CoordinatesList.Add(Coordinates);
+            //CoordinatesList.Add(Coordinates);
             MapReference = FindObjectOfType<Map>();
             MapReference.RegisterPlayer(this);
             MapReference.OnGameOver += GameOver;
@@ -262,7 +262,7 @@ public class Character : MonoBehaviour
         
         if (!IsRewinding)
         {
-            CoordinatesList.Add(newCoordinates);
+            CoordinatesList.Add(PreviousCoordinates);
         }
 
         TimeElapsedSinceMovementAsked = 0;
@@ -281,6 +281,12 @@ public class Character : MonoBehaviour
         
         PreviousCoordinates = Coordinates;
         Coordinates = newCoordinates;
+        
+        if (!IsRewinding)
+        {
+            CoordinatesList.Add(PreviousCoordinates);
+        }
+        
         transform.position = MapReference.MapCoordinatesToWorldSpace(newCoordinates);
 
         MapReference.CharacterOnBlock(this);
@@ -320,15 +326,18 @@ public class Character : MonoBehaviour
             Move(CoordinatesList.Last());
             if (IsPlayer())
             {
-                PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
-                GhostPath.RemoveLastCommand();
-                if (CoordinatesList.Count == 1)
+                if (PreviousCommand.Count != 0)
                 {
-                    return;
+                    PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
                 }
-                
+                GhostPath.RemoveLastCommand();
+                CoordinatesList.RemoveAt(CoordinatesList.Count - 1);
             }
-            CoordinatesList.RemoveAt(CoordinatesList.Count - 1);
+            else
+            {
+                CoordinatesList.RemoveAt(CoordinatesList.Count - 1);    
+            }
+            
             
             if (CoordinatesList.Count == 0)
             {

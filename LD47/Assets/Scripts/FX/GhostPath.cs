@@ -161,7 +161,7 @@ public class GhostPath : MonoBehaviour
         GameObject go = Instantiate(TrailModel,
             MapReference.MapCoordinatesToWorldSpace(InitialPoint) + Vector3.up * Height, Quaternion.Euler(0, 0, 0));
         TrailSpawned.Add(go.GetComponent<TrailRenderer>());
-        TrailSpawned.Last().material.color = Color;
+        TrailSpawned.Last().material.SetColor("Color_1", Color);
         TimeElapsed.Add(0);
         PositionMovementStart.Add(go.transform.position);
         PositionMovementEnd.Add(go.transform.position);
@@ -195,7 +195,7 @@ public class GhostPath : MonoBehaviour
         GameObject go = Instantiate(TrailModel,MapReference.MapCoordinatesToWorldSpace(NextCoord) + offset,
             Quaternion.Euler(0, 0, 0));
         TrailSpawned.Add(go.GetComponent<TrailRenderer>());
-        TrailSpawned.Last().material.color = Color;
+        TrailSpawned.Last().material.SetColor("Color_1", Color);
         TimeElapsed.Add(0);
         PositionMovementStart.Add(go.transform.position);
         PositionMovementEnd.Add(go.transform.position);
@@ -209,7 +209,7 @@ public class GhostPath : MonoBehaviour
         Color = color;
         foreach (var Trail in TrailSpawned)
         {
-            Trail.material.color = Color;
+            Trail.material.SetColor("Color_1", Color);
         }
     }
 }

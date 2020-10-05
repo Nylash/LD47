@@ -27,26 +27,22 @@ public class Map : EnhancedMonoBehaviour
     private bool IsUpdating = false;
     private bool IsUpdatingGhost = false;
 
-    private bool IsRewinding = false;
+    public bool IsRewinding = false;
 
     public void StartRewind()
     {
+        if (IsRewinding)
+            return;
+        
         IsRewinding = true;
-        PlayerCharacter.IsRewinding = true;
-        foreach (var ghost in Ghosts)
-        {
-            ghost.IsRewinding = true;
-        }
     }
 
     public void StopRewind()
     {
+        if (!IsRewinding)
+            return;
+        
         IsRewinding = false;
-        PlayerCharacter.IsRewinding = false;
-        foreach (var ghost in Ghosts)
-        {
-            ghost.IsRewinding = false;
-        }
     }
 
     protected override void GameStart()
@@ -58,6 +54,10 @@ public class Map : EnhancedMonoBehaviour
     {
         if (RefreshAssets)
         {
+            Map map = new Map();
+            GhostPrefab = map.GhostPrefab;
+            
+            
             CreateBlocks(true);
             RefreshAssets = false;
         }
@@ -316,7 +316,7 @@ public class Map : EnhancedMonoBehaviour
         if (!GhostAreMoving() && !IsUpdatingGhost)
         {
             // Check ghost collision
-            if (!PlayerCharacter.IsRewinding && HasGhostOnTheSameBlock())
+            if (!IsRewinding && HasGhostOnTheSameBlock())
             {
                 OnGameOver.Invoke();
             }
@@ -347,7 +347,7 @@ public class Map : EnhancedMonoBehaviour
         if (!GhostAreMoving() && !IsUpdatingGhost && !PlayerCharacter.IsMoving)
         {
             // Check ghost collision
-            if (!PlayerCharacter.IsRewinding && HasGhostOnTheSameBlock())
+            if (!IsRewinding && HasGhostOnTheSameBlock())
             {
                 OnGameOver.Invoke();
             }

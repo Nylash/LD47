@@ -215,6 +215,7 @@ public class Character : MonoBehaviour
     {
         if (ctx.started && !UI_Manager.instance.bLevelPaused && !GhostCreationRequested)
         {
+            SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.waaaaf, audioSource);
             GhostCreationRequested = true;
         }
     }

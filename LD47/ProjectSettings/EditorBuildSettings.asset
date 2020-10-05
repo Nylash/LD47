@@ -18,16 +18,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Levels/Tuto_3.unity
     guid: 1fa5c2b4c6b0df4498dde17ecb5aa4b9
   - enabled: 1
-    path: Assets/Scenes/Levels/Tuto_5.unity
+    path: Assets/Scenes/Levels/Tuto_4.unity
     guid: defad5cd91eecbb4cac7529a9beb2b5a
   - enabled: 1
-    path: Assets/Scenes/Levels/Tuto_6.unity
+    path: Assets/Scenes/Levels/Tuto_5.unity
     guid: 22a967af7a1d56d48965c5743c8d1117
   - enabled: 1
-    path: Assets/Scenes/Levels/Tuto_7.unity
+    path: Assets/Scenes/Levels/Tuto_6.unity
     guid: f58cca80e1c23b242bfb0c2fb3112b86
   - enabled: 1
-    path: Assets/Scenes/Levels/Tuto_8.unity
+    path: Assets/Scenes/Levels/Tuto_7.unity
     guid: 6794f2463a7ead142adc8703b54eac0a
   - enabled: 1
     path: Assets/Scenes/Levels/Level_1.unity
@@ -40,12 +40,12 @@ EditorBuildSettings:
     guid: 5fcac3e4b51bf7a4eb6c429b78c1a537
   - enabled: 1
     path: Assets/Scenes/Levels/Level_4.unity
-    guid: e3f5946b3adeacd4f80f28c3876c4660
+    guid: 3a19427376920264f8ca245e25652a45
   - enabled: 1
     path: Assets/Scenes/Levels/Level_5.unity
-    guid: 67a3999eeb8d9ff4fbfbda2bedf520d9
+    guid: e3f5946b3adeacd4f80f28c3876c4660
   - enabled: 1
     path: Assets/Scenes/Levels/Level_6.unity
-    guid: 3a19427376920264f8ca245e25652a45
+    guid: 67a3999eeb8d9ff4fbfbda2bedf520d9
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 6d843d794bb05244db6c75a2d132e38b, type: 2}

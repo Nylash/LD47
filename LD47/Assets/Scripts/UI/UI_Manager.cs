@@ -49,6 +49,7 @@ public class UI_Manager : MonoBehaviour
 
     public void Defeat()
     {
+        ShakeScreen.instance.Shake();
         SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.ouafDeMort, audioSource);
         bLevelPaused = true;
         defeatCanvas.enabled = true;

@@ -139,6 +139,7 @@ public class Character : MonoBehaviour
                     Vector2 newCoordinates;
                     if (MapReference.CanMoveTo(Coordinates, Command, out newCoordinates))
                     {
+                        LastRewindedCommand = MovementCommand.None;
                         MapReference.ManualUpdate();
                     }
                     else
@@ -351,6 +352,11 @@ public class Character : MonoBehaviour
             }
             else
             {
+                CurrentCommandIndex--;
+                if (CurrentCommandIndex < 0)
+                {
+                    CurrentCommandIndex = PreviousCommand.Count - 1;
+                }
                 CoordinatesList.RemoveAt(CoordinatesList.Count - 1);    
             }
             

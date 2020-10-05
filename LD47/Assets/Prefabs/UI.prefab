@@ -1707,7 +1707,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ea7be4d1452e2f47a2d56601d8382d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
+  sounds:
+  - name: 1
+    clips:
+    - {fileID: 8300000, guid: 4689995bf28493c4a86028b3123a77df, type: 3}
+    volume: 0.5
+    pitchs:
+    - 1
+  - name: 2
+    clips:
+    - {fileID: 8300000, guid: f0dafea0d8e7f7746b8bdef5a22fd640, type: 3}
+    - {fileID: 8300000, guid: cbbb405f721e6264bba7ac1bba02f0ff, type: 3}
+    volume: 0.1
+    pitchs:
+    - 1
+    - 1.05
+    - 1.1
+  - name: 3
+    clips:
+    - {fileID: 8300000, guid: fca6adbb886abb747aefba2d7f7af9b2, type: 3}
+    volume: 0.2
+    pitchs:
+    - 1
+  - name: 7
+    clips:
+    - {fileID: 8300000, guid: b09637d897460f74094b0be6c1ee36f7, type: 3}
+    volume: 0.2
+    pitchs:
+    - 1
+  - name: 4
+    clips:
+    - {fileID: 8300000, guid: 2f0a4fa7039e8044bbcfb4059a99736a, type: 3}
+    volume: 0.2
+    pitchs:
+    - 1
+  - name: 6
+    clips:
+    - {fileID: 8300000, guid: 691e84cd0e38de844a3f8ca6fdeb95a1, type: 3}
+    volume: 0.2
+    pitchs:
+    - 1
+    - 1.05
+    - 1.1
+  - name: 8
+    clips:
+    - {fileID: 8300000, guid: d30141b9df75eb3468b63d1f3a68d7ca, type: 3}
+    volume: 0.4
+    pitchs:
+    - 1
+  - name: 5
+    clips:
+    - {fileID: 8300000, guid: e69fbb5972fdd424492614358f36a597, type: 3}
+    volume: 0.2
+    pitchs:
+    - 1
 --- !u!82 &2367275820214035146
 AudioSource:
   m_ObjectHideFlags: 0

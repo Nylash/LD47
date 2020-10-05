@@ -34,7 +34,9 @@ public class Character : MonoBehaviour
     public bool GhostCreationRequested = false;
 
     private int NumberOfGhostCreated = 0;
-    
+
+    private AudioSource audioSource;
+
     // Movement
     [Header("Movement")]
     [HideInInspector] public bool IsMoving = false;
@@ -101,7 +103,9 @@ public class Character : MonoBehaviour
             GhostPath = go.GetComponent<GhostPath>();
             GhostPath.SetInitialPoint(InitialCoordinates);
             GhostPath.SetColor(Color);
+            GetComponentInChildren<SkinnedMeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
         }
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -219,6 +223,7 @@ public class Character : MonoBehaviour
     {
         if (ctx.started && !UI_Manager.instance.bLevelPaused)
         {
+            SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.rewindTime, audioSource);
             MapReference.StartRewind();
         }
 
@@ -244,6 +249,7 @@ public class Character : MonoBehaviour
             InitialCoordinates = PreviousCoordinates;
             GhostPath.SetInitialPoint(InitialCoordinates);
             GhostPath.SetColor(Color);
+            SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.ghostPop, audioSource);
         }
     }
 
@@ -265,6 +271,8 @@ public class Character : MonoBehaviour
         IsMoving = true;
         
         MapReference.CharacterOnBlock(this);
+        if (IsPlayer() && !IsRewinding)
+            SoundsManager.instance.PlaySoundOneShot(SoundsManager.SoundName.wooshDeplacement, audioSource);
     }
 
     private void Teleport(Vector2 newCoordinates)

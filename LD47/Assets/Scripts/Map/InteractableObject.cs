@@ -15,11 +15,6 @@ public class InteractableObject : EnhancedMonoBehaviour
     [SerializeField] protected MeshRenderer MeshRef = null;
 
     private MapBlock Owner = null;
-    
-    protected override void EditorStart()
-    {
-
-    }
 
     public virtual void InteractEnter(Character player)
     {
@@ -29,11 +24,6 @@ public class InteractableObject : EnhancedMonoBehaviour
     public virtual void InteractExit(Character player)
     {
         
-    }
-
-    protected override void EditorUpdate()
-    {
-
     }
 
     protected virtual GameObject GetObjectRef()

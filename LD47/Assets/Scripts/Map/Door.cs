@@ -71,13 +71,16 @@ public class Door : InteractableObject
                 frameLeftRef.transform.position += new Vector3(-.5f, 0, 0);
                 frameRightRef = Instantiate(GetOwner().FrameModel, MeshRef.transform.position, Quaternion.identity);
                 frameRightRef.transform.position += new Vector3(.5f, 0, 0);
+                frameRightRef.transform.eulerAngles = new Vector3(0, 180, 0);
             }
             if (WallToConvertToDoor == MovementCommand.Left || WallToConvertToDoor == MovementCommand.Right)
             {
                 frameLeftRef = Instantiate(GetOwner().FrameModel, MeshRef.transform.position, Quaternion.identity);
                 frameLeftRef.transform.position += new Vector3(0, 0, -.5f);
+                frameLeftRef.transform.eulerAngles = new Vector3(0, -90, 0);
                 frameRightRef = Instantiate(GetOwner().FrameModel, MeshRef.transform.position, Quaternion.identity);
                 frameRightRef.transform.position += new Vector3(0, 0, .5f);
+                frameRightRef.transform.eulerAngles = new Vector3(0, 90, 0);
             }
             frameLeftRef.transform.parent = GetOwner().transform;
             frameRightRef.transform.parent = GetOwner().transform;

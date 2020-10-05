@@ -18,6 +18,10 @@ public class Map : EnhancedMonoBehaviour
     private List<Character> NewInactiveBlockCoords = new List<Character>();
 
     [SerializeField] private GameObject GhostPrefab = null;
+    [HideInInspector] [SerializeField] private GameObject FogSide = null;
+    [HideInInspector] [SerializeField] private GameObject FogFront = null;
+    [HideInInspector] [SerializeField] private GameObject[] FogSideRef = {null,null};
+    [HideInInspector] [SerializeField] private GameObject[] FogFrontRef = {null, null};
     private List<Character> Ghosts = new List<Character>();
 
     public UnityAction OnGameOver;
@@ -54,9 +58,11 @@ public class Map : EnhancedMonoBehaviour
     {
         if (RefreshAssets)
         {
-            Map map = new Map();
+            Map map = gameObject.AddComponent<Map>();
             GhostPrefab = map.GhostPrefab;
-            
+            FogFront = map.FogFront;
+            FogSide = map.FogSide;
+            DestroyImmediate(map);
             
             CreateBlocks(true);
             RefreshAssets = false;
@@ -168,6 +174,49 @@ public class Map : EnhancedMonoBehaviour
         }
         Blocks.Clear();
         Blocks.AddRange(newBlocks);
+
+        if (FogFrontRef[0] != null)
+        {
+            DestroyImmediate(FogFrontRef[0]);
+        }
+
+        Vector3 wallOffset = new Vector3(-0.5f,0.5f,0.5f); 
+        
+        FogFrontRef[0] = Instantiate(FogFront);
+        FogFrontRef[0].transform.localScale = new Vector3(FogFrontRef[0].transform.localScale.x * Size.x,
+            FogFrontRef[0].transform.localScale.y, FogFrontRef[0].transform.localScale.z);
+
+        FogFrontRef[0].transform.position = MapCoordinatesToWorldSpace(new Vector2(Size.x / 2, 0)) + wallOffset;
+        
+        if (FogFrontRef[1] != null)
+        {
+            DestroyImmediate(FogFrontRef[1]);
+        }
+        
+        FogFrontRef[1] = Instantiate(FogFront);
+        FogFrontRef[1].transform.localScale = new Vector3(FogFrontRef[1].transform.localScale.x * Size.x,
+            FogFrontRef[1].transform.localScale.y, FogFrontRef[1].transform.localScale.z);
+            
+        FogFrontRef[1].transform.position = MapCoordinatesToWorldSpace(new Vector2(Size.x / 2, Size.y)) + wallOffset;
+        
+        if (FogSideRef[0] != null)
+        {
+            DestroyImmediate(FogSideRef[0]);
+        }
+        FogSideRef[0] = Instantiate(FogSide);
+        FogSideRef[0].transform.localScale = new Vector3(FogSideRef[0].transform.localScale.x * Size.y,
+            FogSideRef[0].transform.localScale.y, FogSideRef[0].transform.localScale.z);
+        FogSideRef[0].transform.position = MapCoordinatesToWorldSpace(new Vector2(0, Size.y / 2)) + wallOffset;
+        
+        if (FogSideRef[1] != null)
+        {
+            DestroyImmediate(FogSideRef[1]);
+        }
+        FogSideRef[1] = Instantiate(FogSide);
+        FogSideRef[1].transform.localScale = new Vector3(FogSideRef[1].transform.localScale.x * Size.y,
+            FogSideRef[1].transform.localScale.y, FogSideRef[1].transform.localScale.z);
+        FogSideRef[1].transform.position = MapCoordinatesToWorldSpace(new Vector2(Size.x, Size.y / 2)) + wallOffset;
+        
     }
 
     public bool CanMoveTo(Vector2 From, MovementCommand Direction, out Vector2 NewCoordinates)

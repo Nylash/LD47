@@ -5,6 +5,8 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - GhostPrefab: {fileID: 2363551567409886830, guid: db4d207171e2bce4d8fd6c9c88253812, type: 3}
+  - FogSide: {fileID: 895101822871267250, guid: c7efff940410c7341b9215759960c812, type: 3}
+  - FogFront: {fileID: 4089403935502613659, guid: 887d64fa6e0c36f4b8b5c50d6f3b488a, type: 3}
   executionOrder: 200
   icon: {instanceID: 0}
   userData: 

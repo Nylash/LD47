@@ -65,6 +65,14 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
+                },
+                {
+                    ""name"": ""Rewind"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ddf88b5-1a4a-4cbb-8dbb-be7403b828fb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=2)""
                 }
             ],
             ""bindings"": [
@@ -142,6 +150,17 @@ public class @InputActions : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""ControlScheme"",
                     ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f687d09b-eca3-4ec4-a099-f0f2e7f398eb"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Rewind"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -342,6 +361,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         m_Player_MoveRight = m_Player.FindAction("MoveRight", throwIfNotFound: true);
         m_Player_CreateGhost = m_Player.FindAction("CreateGhost", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
+        m_Player_Rewind = m_Player.FindAction("Rewind", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Accept = m_UI.FindAction("Accept", throwIfNotFound: true);
@@ -401,6 +421,7 @@ public class @InputActions : IInputActionCollection, IDisposable
     private readonly InputAction m_Player_MoveRight;
     private readonly InputAction m_Player_CreateGhost;
     private readonly InputAction m_Player_Pause;
+    private readonly InputAction m_Player_Rewind;
     public struct PlayerActions
     {
         private @InputActions m_Wrapper;
@@ -411,6 +432,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         public InputAction @MoveRight => m_Wrapper.m_Player_MoveRight;
         public InputAction @CreateGhost => m_Wrapper.m_Player_CreateGhost;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
+        public InputAction @Rewind => m_Wrapper.m_Player_Rewind;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -438,6 +460,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
                 @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Rewind.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRewind;
+                @Rewind.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRewind;
+                @Rewind.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRewind;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -460,6 +485,9 @@ public class @InputActions : IInputActionCollection, IDisposable
                 @Pause.started += instance.OnPause;
                 @Pause.performed += instance.OnPause;
                 @Pause.canceled += instance.OnPause;
+                @Rewind.started += instance.OnRewind;
+                @Rewind.performed += instance.OnRewind;
+                @Rewind.canceled += instance.OnRewind;
             }
         }
     }
@@ -522,6 +550,7 @@ public class @InputActions : IInputActionCollection, IDisposable
         void OnMoveRight(InputAction.CallbackContext context);
         void OnCreateGhost(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
+        void OnRewind(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

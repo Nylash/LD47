@@ -27,6 +27,28 @@ public class Map : EnhancedMonoBehaviour
     private bool IsUpdating = false;
     private bool IsUpdatingGhost = false;
 
+    private bool IsRewinding = false;
+
+    public void StartRewind()
+    {
+        IsRewinding = true;
+        PlayerCharacter.IsRewinding = true;
+        foreach (var ghost in Ghosts)
+        {
+            ghost.IsRewinding = true;
+        }
+    }
+
+    public void StopRewind()
+    {
+        IsRewinding = false;
+        PlayerCharacter.IsRewinding = false;
+        foreach (var ghost in Ghosts)
+        {
+            ghost.IsRewinding = false;
+        }
+    }
+
     protected override void GameStart()
     {
         OnGameOver += UI_Manager.instance.Defeat;
@@ -59,6 +81,19 @@ public class Map : EnhancedMonoBehaviour
         // First update ghosts
         PlayerCharacter.DoUpdate();
         UpdateGhosts();
+    }
+
+    public void RewindUpdate()
+    {
+        if (IsUpdating)
+        {
+            return;
+        }
+        
+        IsUpdating = true;
+        
+        RewindGhosts();
+        PlayerCharacter.ReadPreviousOrder();
     }
 
     private void UpdateMap()
@@ -256,6 +291,19 @@ public class Map : EnhancedMonoBehaviour
         }
     }
 
+    public void RewindGhosts()
+    {
+        IsUpdatingGhost = true;
+        int numberOfGhostAtStart = Ghosts.Count;
+        for (int i = 0; i < numberOfGhostAtStart; ++i)
+        {
+            Ghosts[i].ReadPreviousOrder();
+        }
+        IsUpdatingGhost = false;
+        
+        OnGhostMovementEnded();
+    }
+
     public void RegisterPlayer(Character Player)
     {
         PlayerCharacter = Player;
@@ -268,7 +316,7 @@ public class Map : EnhancedMonoBehaviour
         if (!GhostAreMoving() && !IsUpdatingGhost)
         {
             // Check ghost collision
-            if (HasGhostOnTheSameBlock())
+            if (!PlayerCharacter.IsRewinding && HasGhostOnTheSameBlock())
             {
                 OnGameOver.Invoke();
             }
@@ -299,7 +347,7 @@ public class Map : EnhancedMonoBehaviour
         if (!GhostAreMoving() && !IsUpdatingGhost && !PlayerCharacter.IsMoving)
         {
             // Check ghost collision
-            if (HasGhostOnTheSameBlock())
+            if (!PlayerCharacter.IsRewinding && HasGhostOnTheSameBlock())
             {
                 OnGameOver.Invoke();
             }
@@ -308,6 +356,12 @@ public class Map : EnhancedMonoBehaviour
                 UpdateMap();
             }
         }
+    }
+
+    public void NotifyGhostDestruction(Character Ghost)
+    {
+        Ghosts.Remove(Ghost);
+        PlayerCharacter.InitializeFromCharacter(Ghost, true);
     }
     
 }

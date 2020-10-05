@@ -150,6 +150,12 @@ public class GhostPath : MonoBehaviour
         Commands.Add(Command);
     }
 
+    public void RemoveLastCommand()
+    {
+        if(Commands.Count > 0)
+            Commands.RemoveAt(Commands.Count - 1);
+    }
+
     private void AddTrail()
     {
         GameObject go = Instantiate(TrailModel,

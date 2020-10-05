@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     private MovementCommand Command = MovementCommand.None;
 
     private List<MovementCommand> PreviousCommand = new List<MovementCommand>();
+    private List<Vector2> CoordinatesList = new List<Vector2>();
     private int CurrentCommandIndex = 0;
 
     [SerializeField] private Vector2 Coordinates = Vector2.zero;
@@ -54,18 +55,35 @@ public class Character : MonoBehaviour
     private MaterialsIndexer MaterialIndexer = null;
 
     [SerializeField] private Color Color = Color.white;
+    [HideInInspector] public bool IsRewinding = false;
 
     private GhostPath GhostPath = null;
 
-    public void InitializeFromCharacter(Character Other)
+    public void InitializeFromCharacter(Character Other, bool StayInPlace = false)
     {
         SetInitialCoordinates(Other.InitialCoordinates);
-        Coordinates = InitialCoordinates;
-        PreviousCommand.AddRange(Other.PreviousCommand);
+        if (!IsRewinding)
+        {
+            CoordinatesList.Add(InitialCoordinates);
+        }
         MapReference = Other.MapReference;
-        transform.position = MapReference.MapCoordinatesToWorldSpace(InitialCoordinates);
-
-        MapReference.CharacterOnBlock(this);
+        if (!StayInPlace)
+        {
+            Coordinates = InitialCoordinates;
+            transform.position = MapReference.MapCoordinatesToWorldSpace(InitialCoordinates);
+            MapReference.CharacterOnBlock(this);
+            
+            NumberOfGhostCreated--;
+        }
+        else
+        {
+            PreviousCommand.Add(MovementCommand.None);
+        }
+        PreviousCommand.AddRange(Other.PreviousCommand);
+        if (GhostPath)
+        {
+            Destroy(GhostPath);
+        }
         GhostPath = Other.GhostPath;
         GhostPath.SetColor(Color);
     }
@@ -75,6 +93,7 @@ public class Character : MonoBehaviour
         if (IsPlayer())
         {
             SetInitialCoordinates(Coordinates);
+            CoordinatesList.Add(Coordinates);
             MapReference = FindObjectOfType<Map>();
             MapReference.RegisterPlayer(this);
             MapReference.OnGameOver += GameOver;
@@ -93,8 +112,12 @@ public class Character : MonoBehaviour
             TimeElapsedSinceMovementAsked += Time.deltaTime;
             float alpha = Mathf.Clamp01(TimeElapsedSinceMovementAsked / MovementSpeed);
             transform.position = Vector3.Lerp(PositionMovementStart, PositionMovementEnd, MovementCurve.Evaluate(alpha));
-            transform.rotation = Quaternion.Lerp(transform.rotation,
-                Quaternion.LookRotation(PositionMovementStart - PositionMovementEnd), alpha);
+            if (PositionMovementStart - PositionMovementEnd != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation,
+                    Quaternion.LookRotation(PositionMovementStart - PositionMovementEnd), alpha);    
+            }
+            
             if (alpha >= 1)
             {
                 IsMoving = false;
@@ -103,7 +126,7 @@ public class Character : MonoBehaviour
         }
         else
         {
-            if (IsPlayer())
+            if (IsPlayer() && !IsRewinding)
             {
                 if (Command != MovementCommand.None)
                 {
@@ -117,6 +140,11 @@ public class Character : MonoBehaviour
                         Command = MovementCommand.None;
                     }
                 }
+            }
+
+            if (IsRewinding)
+            {
+                MapReference.RewindUpdate();
             }
         }
             
@@ -156,26 +184,26 @@ public class Character : MonoBehaviour
 
     public void AskMoveUp(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Down && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Up;
     }
     
     public void AskMoveDown(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Up && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Down;
     }
     
     public void AskMoveLeft(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Right && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Left;   
 
     }
     
     public void AskMoveRight(InputAction.CallbackContext ctx)
     {
-        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked)
+        if(ctx.started && !UI_Manager.instance.bLevelPaused && Command == MovementCommand.None && GetLastCommand() != MovementCommand.Left && !IsMoving && !LoopLocked && !IsRewinding)
             Command = MovementCommand.Right;
     }
 
@@ -184,6 +212,19 @@ public class Character : MonoBehaviour
         if (ctx.started && !UI_Manager.instance.bLevelPaused)
         {
             GhostCreationRequested = true;
+        }
+    }
+
+    public void Rewind(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started && !UI_Manager.instance.bLevelPaused)
+        {
+            MapReference.StartRewind();
+        }
+
+        if (ctx.canceled || UI_Manager.instance.bLevelPaused)
+        {
+            MapReference.StopRewind();
         }
     }
     
@@ -212,9 +253,14 @@ public class Character : MonoBehaviour
         
         PreviousCoordinates = Coordinates;
         Coordinates = newCoordinates;
+        
+        if (!IsRewinding)
+        {
+            CoordinatesList.Add(newCoordinates);
+        }
 
         TimeElapsedSinceMovementAsked = 0;
-        PositionMovementStart = transform.position;
+        PositionMovementStart = MapReference.MapCoordinatesToWorldSpace(PreviousCoordinates);
         PositionMovementEnd = MapReference.MapCoordinatesToWorldSpace(newCoordinates);
         IsMoving = true;
         
@@ -257,6 +303,38 @@ public class Character : MonoBehaviour
             CurrentCommandIndex++;            
         }
         DoUpdate();
+    }
+    
+    public void ReadPreviousOrder()
+    {
+        if (CoordinatesList.Count != 0)
+        {
+            Move(CoordinatesList.Last());
+            if (IsPlayer())
+            {
+                PreviousCommand.RemoveAt(PreviousCommand.Count - 1);
+                GhostPath.RemoveLastCommand();
+                if (CoordinatesList.Count == 1)
+                {
+                    return;
+                }
+                
+            }
+            CoordinatesList.RemoveAt(CoordinatesList.Count - 1);
+            
+            if (CoordinatesList.Count == 0)
+            {
+                if (!IsPlayer())
+                {
+                    MapReference.NotifyGhostDestruction(this);
+                    Destroy(gameObject);
+                }
+                else
+                {
+                    IsRewinding = false;
+                }
+            }
+        }
     }
 
     private bool IsPlayer()

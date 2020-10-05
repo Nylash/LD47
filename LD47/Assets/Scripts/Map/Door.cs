@@ -27,27 +27,16 @@ public class Door : InteractableObject
         }
     }
 
-    protected override void GameStart()
-    {
-        frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsDefault[InteractionLayer]);
-    }
-
     public override void InteractEnter(Character player)
     {
         GetOwner().UnlockDirection(WallToConvertToDoor);
         ObjectRef.GetComponent<Animator>().SetTrigger("Open");
-        print(materialsIndexer.materials[InteractionLayer].GetColor("_EmissionColor"));
-        frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsActive[InteractionLayer]);
-        //frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materials[InteractionLayer].GetColor("_EmissionColor") * 1.5f);
-        print(materialsIndexer.materials[InteractionLayer].GetColor("_EmissionColor"));
     }
 
     public override void InteractExit(Character player)
     {
         GetOwner().LockDirection(WallToConvertToDoor);
         ObjectRef.GetComponent<Animator>().SetTrigger("Close");
-        frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materialsColorsDefault[InteractionLayer]);
-        //frameLeftRef.transform.GetChild(0).GetComponent<MeshRenderer>().sharedMaterials[1].SetColor("_EmissionColor", materialsIndexer.materials[InteractionLayer].GetColor("_EmissionColor") / 1.5f);
     }
 
     protected override GameObject GetObjectRef()

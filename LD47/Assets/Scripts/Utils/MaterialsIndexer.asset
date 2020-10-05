@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: MaterialsIndexer
   m_EditorClassIdentifier: 
   materials:
-  - {fileID: 2100000, guid: 152b59e5081823b458ed7c624a73fe7b, type: 2}
-  - {fileID: 2100000, guid: efc2690c44342714c821453e2d990b13, type: 2}
-  - {fileID: 2100000, guid: 4d60a38988c682f4c8dd04f575e47958, type: 2}
+  - {fileID: 2100000, guid: ba0f7f6ad549da74884f9e6cb0a23582, type: 2}
+  - {fileID: 2100000, guid: 5532f8e1883e9964b9b16e1c0be4f748, type: 2}
+  - {fileID: 2100000, guid: dea57338b92690541a25cab143dfa5d2, type: 2}
   GhostColors:
   - {r: 0, g: 0.9510379, b: 1.9020758, a: 1}
   - {r: 1.7945135, g: 0.5962395, b: 0, a: 1}

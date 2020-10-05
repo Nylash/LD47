@@ -602,11 +602,11 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_ActionsAsset: {fileID: -944628639613478452, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
-  m_PointAction: {fileID: 0}
+  m_PointAction: {fileID: 4081777725963025566, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_MoveAction: {fileID: -2516202981334062544, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_SubmitAction: {fileID: 3609820601416550413, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_CancelAction: {fileID: 0}
-  m_LeftClickAction: {fileID: 0}
+  m_LeftClickAction: {fileID: 8056856818456041789, guid: 6ce6ef04eecead141ac2d9bc2d0ce20b, type: 3}
   m_MiddleClickAction: {fileID: 0}
   m_RightClickAction: {fileID: 0}
   m_ScrollWheelAction: {fileID: 0}

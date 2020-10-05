@@ -18,10 +18,6 @@ public class SoundsManager : MonoBehaviour
 
     [ArrayElementTitle("name")]
     public List<Sound> sounds = new List<Sound>();
-    InputActions actionsMap;
-
-    private void OnEnable() => actionsMap.Player.Enable();
-    private void OnDisable() => actionsMap.Player.Disable();
 
     private void Awake()
     {
@@ -29,10 +25,6 @@ public class SoundsManager : MonoBehaviour
             instance = this;
         else if (instance != this)
             Destroy(gameObject);
-
-        actionsMap = new InputActions();
-
-        actionsMap.Player.Debug.started += ctx => DebugSound();
     }
 
     public void PlaySoundLoop(SoundName soundName, AudioSource source)
@@ -74,10 +66,5 @@ public class SoundsManager : MonoBehaviour
     public enum SoundName
     {
         TO_DEFINE, waaaaf, wooshDeplacement, ouafDeMort, rewindTime, ghostPop, door, pickUpBones, victory
-    }
-
-    void DebugSound()
-    {
-        GetComponent<AudioSource>().Play();
     }
 }

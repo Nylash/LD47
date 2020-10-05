@@ -9,4 +9,8 @@ public class MaterialsIndexer : ScriptableObject
 
     [ColorUsage(true,true)]
     public Color[] GhostColors;
+
+    public Vector4[] materialsColorsDefault;
+
+    public Vector4[] materialsColorsActive;
 }

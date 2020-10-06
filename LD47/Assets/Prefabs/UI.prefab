@@ -936,7 +936,7 @@ MonoBehaviour:
   - name: 4
     clips:
     - {fileID: 8300000, guid: 64d319a793cc2ce4ca93aef4a090f8b8, type: 3}
-    volume: 0.2
+    volume: 0.3
     pitchs:
     - 1
   - name: 6

@@ -42,7 +42,7 @@ PlayerSettings:
   m_SplashScreenLogos:
   - logo: {fileID: 10404, guid: 0000000000000000e000000000000000, type: 0}
     duration: 2
-  - logo: {fileID: 21300000, guid: 04616c8dc716da4419d367517e55e308, type: 3}
+  - logo: {fileID: 21300000, guid: ce3ff1ab268ca59468d2679fcb30d7db, type: 3}
     duration: 2
   m_VirtualRealitySplashScreen: {fileID: 0}
   m_HolographicTrackingLossScreen: {fileID: 0}
@@ -189,7 +189,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 1
+  StripUnusedMeshComponents: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 11.0
@@ -615,8 +615,8 @@ PlayerSettings:
   gcIncremental: 1
   gcWBarrierValidation: 0
   apiCompatibilityLevelPerPlatform:
-    Standalone: 3
-    WebGL: 3
+    Standalone: 6
+    WebGL: 6
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
   metroPackageName: Template_Lightweight
